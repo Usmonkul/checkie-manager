@@ -29,7 +29,7 @@ const SideNavigation = () => {
 
   return (
     <div
-      className={`fixed ${
+      className={`fixed z-40 ${
         !hovered ? "w-[80px] items-center" : "w-[250px]"
       } h-screen bg-dark_blue pt-[90px] flex flex-col transition-all font-semibold`}
       onMouseEnter={handleMouseEnter}

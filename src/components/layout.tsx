@@ -1,5 +1,5 @@
 import * as React from "react";
-import Header from "./header";
+import { Header, SideNavigation } from "@/components/index";
 import Head from "next/head";
 export interface LayoutProps {
   children?: React.ReactNode;
@@ -13,6 +13,7 @@ export const Layout = ({ children }: LayoutProps) => {
         <meta name="description" content="Checkie web manager app" />
       </Head>
       <Header />
+      <SideNavigation />
       <main className="flex-1 mt-[80px]">{children}</main>
     </div>
   );

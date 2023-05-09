@@ -35,64 +35,83 @@ const SideNavigation = () => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <div className={`${hovered && "pl-8"}`}>
-        <SideNavigationLink name={`${hovered ? "Dashboard" : ""}`}>
+      <div className={``}>
+        <SideNavigationLink
+          hovered={hovered}
+          name={`${hovered ? "Dashboard" : ""}`}
+        >
           <MdOutlineDashboardCustomize className="text-2xl" />
         </SideNavigationLink>
       </div>
       <span className="line h-[2px] w-full bg-white/75 my-4"></span>
-      <div className={`${hovered && "pl-8"}`}>
-        <ul className="list-none flex flex-col space-y-4">
-          <li>
-            <SideNavigationLink name={`${hovered ? "Target" : ""}`}>
-              <MdPlace className="text-2xl" />
-            </SideNavigationLink>
-          </li>
-          <li>
-            <SideNavigationLink name={`${hovered ? "Inspection" : ""}`}>
-              <FcInspection className="text-2xl" />
-            </SideNavigationLink>
-          </li>
-          <li>
-            <SideNavigationLink name={`${hovered ? "Categories" : ""}`}>
-              <MdOutlineCategory className="text-2xl" />
-            </SideNavigationLink>
-          </li>
-          <li>
-            <SideNavigationLink name={`${hovered ? "Inspectors" : ""}`}>
-              <BsPersonAdd className="text-2xl" />
-            </SideNavigationLink>
-          </li>
-          <li>
-            <SideNavigationLink name={`${hovered ? "Inspection History" : ""}`}>
-              <AiOutlineHistory className="text-2xl" />
-            </SideNavigationLink>
-          </li>
-          <li>
-            <SideNavigationLink name={`${hovered ? "Inspection Draft" : ""}`}>
-              <RiDraftLine className="text-2xl" />
-            </SideNavigationLink>
-          </li>
+      <div className={``}>
+        <ul className="list-none flex flex-col">
+          <SideNavigationLink
+            hovered={hovered}
+            name={`${hovered ? "Target" : ""}`}
+          >
+            <MdPlace className="text-2xl " />
+          </SideNavigationLink>
+
+          <SideNavigationLink
+            hovered={hovered}
+            name={`${hovered ? "Inspection" : ""}`}
+          >
+            <FcInspection className="text-2xl" />
+          </SideNavigationLink>
+
+          <SideNavigationLink
+            hovered={hovered}
+            name={`${hovered ? "Categories" : ""}`}
+          >
+            <MdOutlineCategory className="text-2xl" />
+          </SideNavigationLink>
+
+          <SideNavigationLink
+            hovered={hovered}
+            name={`${hovered ? "Inspectors" : ""}`}
+          >
+            <BsPersonAdd className="text-2xl" />
+          </SideNavigationLink>
+
+          <SideNavigationLink
+            hovered={hovered}
+            name={`${hovered ? "Inspection History" : ""}`}
+          >
+            <AiOutlineHistory className="text-2xl" />
+          </SideNavigationLink>
+
+          <SideNavigationLink
+            hovered={hovered}
+            name={`${hovered ? "Inspection Draft" : ""}`}
+          >
+            <RiDraftLine className="text-2xl" />
+          </SideNavigationLink>
         </ul>
       </div>
       <span className="line h-[2px] w-full bg-white/75 my-4 mt-auto"></span>
-      <div className={`${hovered && "pl-8"}`}>
-        <ul className="list-none flex flex-col space-y-4">
-          <li>
-            <SideNavigationLink name={`${hovered ? "Help" : ""}`}>
-              <IoMdHelpCircleOutline className="text-2xl" />
-            </SideNavigationLink>
-          </li>
-          <li>
-            <SideNavigationLink name={`${hovered ? "Discover" : ""}`}>
-              <AiOutlineBulb className="text-2xl" />
-            </SideNavigationLink>
-          </li>
-          <li>
-            <SideNavigationLink name={`${hovered ? "Admin" : ""}`}>
-              <MdAdminPanelSettings className="text-2xl" />
-            </SideNavigationLink>
-          </li>
+      <div className={``}>
+        <ul className="list-none flex flex-col">
+          <SideNavigationLink
+            hovered={hovered}
+            name={`${hovered ? "Help" : ""}`}
+          >
+            <IoMdHelpCircleOutline className="text-2xl" />
+          </SideNavigationLink>
+
+          <SideNavigationLink
+            hovered={hovered}
+            name={`${hovered ? "Discover" : ""}`}
+          >
+            <AiOutlineBulb className="text-2xl" />
+          </SideNavigationLink>
+
+          <SideNavigationLink
+            hovered={hovered}
+            name={`${hovered ? "Admin" : ""}`}
+          >
+            <MdAdminPanelSettings className="text-2xl" />
+          </SideNavigationLink>
         </ul>
       </div>
       <span className="line h-[2px] w-full bg-white/75 my-4"></span>

@@ -14,7 +14,7 @@ export const Layout = ({ children }: LayoutProps) => {
       </Head>
       <Header />
       <SideNavigation />
-      <main className="flex-1 mt-[80px]">{children}</main>
+      <main className="flex-1 mt-[80px] md:ml-[100px]">{children}</main>
     </div>
   );
 };

@@ -17,7 +17,7 @@ const Header = () => {
           name="search"
           id="search"
           placeholder="Search...."
-          className="hidden md:flex items-center lg:w-[300px] rounded-xl px-4 border-none outline-none text-black h-[33px] focus:outline focus:outline-green-300"
+          className="hidden md:flex items-center lg:w-[300px] rounded-md px-4 border-none outline-none text-black h-[33px] focus:outline focus:outline-green-300"
         />
       </div>
       <div className="flex items-center space-x-7 uppercase">

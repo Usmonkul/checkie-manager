@@ -37,6 +37,7 @@ const SideNavigation = () => {
     >
       <div className={``}>
         <SideNavigationLink
+          navigation="/"
           hovered={hovered}
           name={`${hovered ? "Dashboard" : ""}`}
         >
@@ -47,6 +48,7 @@ const SideNavigation = () => {
       <div className={``}>
         <ul className="list-none flex flex-col">
           <SideNavigationLink
+            navigation=""
             hovered={hovered}
             name={`${hovered ? "Target" : ""}`}
           >
@@ -54,6 +56,7 @@ const SideNavigation = () => {
           </SideNavigationLink>
 
           <SideNavigationLink
+            navigation=""
             hovered={hovered}
             name={`${hovered ? "Inspection" : ""}`}
           >
@@ -61,6 +64,7 @@ const SideNavigation = () => {
           </SideNavigationLink>
 
           <SideNavigationLink
+            navigation=""
             hovered={hovered}
             name={`${hovered ? "Categories" : ""}`}
           >
@@ -68,6 +72,7 @@ const SideNavigation = () => {
           </SideNavigationLink>
 
           <SideNavigationLink
+            navigation="inspectors"
             hovered={hovered}
             name={`${hovered ? "Inspectors" : ""}`}
           >
@@ -75,6 +80,7 @@ const SideNavigation = () => {
           </SideNavigationLink>
 
           <SideNavigationLink
+            navigation=""
             hovered={hovered}
             name={`${hovered ? "Inspection History" : ""}`}
           >
@@ -82,6 +88,7 @@ const SideNavigation = () => {
           </SideNavigationLink>
 
           <SideNavigationLink
+            navigation=""
             hovered={hovered}
             name={`${hovered ? "Inspection Draft" : ""}`}
           >
@@ -93,6 +100,7 @@ const SideNavigation = () => {
       <div className={``}>
         <ul className="list-none flex flex-col">
           <SideNavigationLink
+            navigation=""
             hovered={hovered}
             name={`${hovered ? "Help" : ""}`}
           >
@@ -100,6 +108,7 @@ const SideNavigation = () => {
           </SideNavigationLink>
 
           <SideNavigationLink
+            navigation=""
             hovered={hovered}
             name={`${hovered ? "Discover" : ""}`}
           >
@@ -107,6 +116,7 @@ const SideNavigation = () => {
           </SideNavigationLink>
 
           <SideNavigationLink
+            navigation=""
             hovered={hovered}
             name={`${hovered ? "Admin" : ""}`}
           >

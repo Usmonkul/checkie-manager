@@ -4,6 +4,7 @@ import Head from "next/head";
 import { PrimaryHeader, ButtonPrimary } from "@/utils/utils";
 import { BiSearchAlt } from "react-icons/bi";
 import InspectorCard from "@/components/inspectorCard/inspectorCard";
+import { CreateInspector } from "@/components";
 export const dataBase = [
   {
     id: 1,
@@ -109,6 +110,7 @@ const Inspectors = () => {
             </div>
           </div>
         </div>
+        <CreateInspector />
         <ul className="list-none flex flex-wrap gap-3 justify-center">
           {inspectorData.map((item, index) => {
             return (

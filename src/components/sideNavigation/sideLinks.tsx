@@ -5,10 +5,12 @@ const SideNavigationLink = ({
   children,
   name,
   hovered,
+  navigation,
 }: {
   children: React.ReactNode;
   name: string;
   hovered: boolean;
+  navigation: string;
 }) => {
   return (
     <li
@@ -17,7 +19,7 @@ const SideNavigationLink = ({
       }`}
     >
       {children}
-      <Link href="" className="ml-2 hover:text-black">
+      <Link href={`${navigation}`} className="ml-2 hover:text-black">
         {name}
       </Link>
     </li>

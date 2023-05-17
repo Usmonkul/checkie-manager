@@ -4,10 +4,11 @@ import Head from "next/head";
 import { PrimaryHeader, ButtonPrimary } from "@/utils/utils";
 import { BiSearchAlt } from "react-icons/bi";
 import InspectorCard from "@/components/inspectorCard/inspectorCard";
+import { uuid } from "uuidv4";
 import { CreateInspector } from "@/components";
 export const dataBase = [
   {
-    id: 1,
+    id: uuid(),
     name: "Donalt Trump",
     job: "Inspector in Tech Lab",
     email: "trump@gmail.com",
@@ -16,7 +17,7 @@ export const dataBase = [
     image: "https://placehold.co/600x400",
   },
   {
-    id: 2,
+    id: uuid(),
     name: "Donalt Trump",
     job: "Inspector in Tech Lab",
     email: "trump@gmail.com",
@@ -25,7 +26,7 @@ export const dataBase = [
     image: "https://placehold.co/600x400",
   },
   {
-    id: 3,
+    id: uuid(),
     name: "Donalt Trump",
     job: "Inspector in Tech Lab",
     email: "trump@gmail.com",
@@ -34,7 +35,7 @@ export const dataBase = [
     image: "https://placehold.co/600x400",
   },
   {
-    id: 4,
+    id: uuid(),
     name: "Donalt Trump",
     job: "Inspector in Tech Lab",
     email: "trump@gmail.com",
@@ -43,7 +44,7 @@ export const dataBase = [
     image: "https://placehold.co/600x400",
   },
   {
-    id: 5,
+    id: uuid(),
     name: "Donalt Trump",
     job: "Inspector in Tech Lab",
     email: "trump@gmail.com",
@@ -52,25 +53,7 @@ export const dataBase = [
     image: "https://placehold.co/600x400",
   },
   {
-    id: 6,
-    name: "Donalt Trump",
-    job: "Inspector in Tech Lab",
-    email: "trump@gmail.com",
-    phone: "0107777777",
-    description: "10 years of experience in his field",
-    image: "https://placehold.co/600x400",
-  },
-  {
-    id: 7,
-    name: "Donalt Trump",
-    job: "Inspector in Tech Lab",
-    email: "trump@gmail.com",
-    phone: "0107777777",
-    description: "10 years of experience in his field",
-    image: "https://placehold.co/600x400",
-  },
-  {
-    id: 8,
+    id: uuid(),
     name: "Donalt Trump",
     job: "Inspector in Tech Lab",
     email: "trump@gmail.com",
@@ -82,7 +65,10 @@ export const dataBase = [
 
 const Inspectors = () => {
   const [inspectorData, setinspectorData] = useState(dataBase);
-
+  const [close, setClose] = useState(false);
+  const toggleHandler = () => {
+    setClose((prev) => !prev);
+  };
   return (
     <div className="text-black">
       <Head>
@@ -91,7 +77,9 @@ const Inspectors = () => {
       <div className="flex flex-col py-5 px-5 space-y-4">
         <div className="flex items-center justify-between">
           <PrimaryHeader title="Inspector" />
-          <ButtonPrimary title="Add Inspector" />
+          <div onClick={toggleHandler}>
+            <ButtonPrimary title="Add Inspector" />
+          </div>
         </div>
         <div className="bg-primary_white shadow-lg px-4 py-2 rounded-md flex items-center justify-between">
           <h4 className="font-medium">
@@ -110,7 +98,7 @@ const Inspectors = () => {
             </div>
           </div>
         </div>
-        <CreateInspector />
+        <CreateInspector close={close} toggleHandler={toggleHandler} />
         <ul className="list-none flex flex-wrap gap-3 justify-center">
           {inspectorData.map((item, index) => {
             return (

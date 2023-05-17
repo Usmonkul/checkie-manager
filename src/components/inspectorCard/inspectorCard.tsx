@@ -6,7 +6,7 @@ import {
   MdOutlineSecurityUpdateGood,
 } from "react-icons/md";
 interface InspectorsProps {
-  id: number;
+  id: string;
   name: string;
   job: string;
   email: string;
@@ -21,13 +21,13 @@ const InspectorCard = ({
   data: InspectorsProps;
   setinspectorData: any;
 }) => {
-  const handleDelete = (dataId: number) => {
+  const handleDelete = (dataId: string) => {
     setinspectorData((current: InspectorsProps[]) =>
       current.filter((card: InspectorsProps) => card.id != dataId)
     );
   };
   return (
-    <li className="max-w-[240px] flex flex-col items-center space-y-1 rounded-md p-3 bg-[#333]/30 transition-all hover:scale-105 shadow-md">
+    <li className="w-[240px] flex flex-col items-center space-y-1 rounded-md p-3 bg-[#333]/30 transition-all hover:scale-105 shadow-md">
       <Image
         src={"https://placehold.co/80x80/png"}
         alt="Inspector"

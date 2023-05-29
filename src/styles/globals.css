@@ -16,8 +16,11 @@
   }
 }
 */
-
+:root {
+  box-sizing: border-box;
+}
 body {
   color: #fff;
   background-color: #f7f9fd;
+  box-sizing: border-box;
 }

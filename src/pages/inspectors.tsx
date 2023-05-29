@@ -81,7 +81,7 @@ const Inspectors = () => {
             <ButtonPrimary title="Add Inspector" />
           </div>
         </div>
-        <div className="bg-primary_white shadow-lg px-4 py-2 rounded-md flex items-center justify-between">
+        <div className="bg-primary_white shadow-lg px-4 py-2 rounded-md flex items-center justify-between  border-l-8 border-dark_blue">
           <h4 className="font-medium">
             No: <span className="text-red-500">10</span>
           </h4>

@@ -10,7 +10,7 @@ const Auth = () => {
       <Head>
         <title>Sign In</title>
       </Head>
-      <div className="w-[450px] bg-primary_white rounded-lg">
+      <div className="w-[450px] bg-primary_white rounded-lg shadow-2xl">
         <div className="bg-light_blue p-3 text-center rounded-t-md">
           <h2 className="uppercase tracking-wide text-2xl text-primary_white font-semibold">
             Sign In

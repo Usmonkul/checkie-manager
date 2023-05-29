@@ -7,9 +7,12 @@ const Header = () => {
     <header className="fixed left-0 right-0 top-0 !z-50 flex items-center justify-between py-4 px-6 bg-dark_blue h-[80px]">
       <div className="flex items-center space-x-3">
         <HiOutlineShieldCheck className="text-4xl text-green-600" />
-        <span className="text-2xl cursor-pointer font-bold uppercase hover:text-green-600 transition-all duration-150 tracking-wide">
+        <Link
+          href="/"
+          className="text-2xl cursor-pointer font-bold uppercase hover:text-green-600 transition-all duration-150 tracking-wide"
+        >
           Checkie
-        </span>
+        </Link>
       </div>
       <div className="search">
         <input
@@ -33,7 +36,7 @@ const Header = () => {
           <li>
             <Link
               className="hover:text-primary_white/50 transition-all duration-150"
-              href="/"
+              href="auth"
             >
               Sign Out
             </Link>

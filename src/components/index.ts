@@ -3,3 +3,5 @@ export { default as SideNavigation } from "./sideNavigation/sideNavigation";
 export { default as CreateInspector } from "./createInspector/createInspector";
 export { default as Filter } from "./filter/filter";
 export { default as RegisterTarget } from "./registerTarget/registerTarget";
+export { default as CreateCategory } from "./createCategory/createCategory";
+export { default as ResgisterItem } from "./registerItem/registerItem";

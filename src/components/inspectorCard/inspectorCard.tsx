@@ -5,15 +5,7 @@ import {
   MdOutlineModeEdit,
   MdOutlineSecurityUpdateGood,
 } from "react-icons/md";
-interface InspectorsProps {
-  id: string;
-  name: string;
-  job: string;
-  email: string;
-  phone: string;
-  description?: string;
-  image: string;
-}
+import { InspectorsProps } from "../../../types/types";
 const InspectorCard = ({
   data,
   setinspectorData,

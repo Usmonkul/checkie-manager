@@ -14,3 +14,13 @@ export interface InspectorsProps {
   description?: string;
   image: string;
 }
+
+export interface DraftDataProps {
+  id: string;
+  title: string;
+  inspector: string;
+  inspectionDate: string;
+  registeredDate: string;
+  progress: string;
+  complationDate: string;
+}

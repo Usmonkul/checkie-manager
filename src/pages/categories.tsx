@@ -10,6 +10,10 @@ import { CategoryProps } from "../../types/types";
 const Categories = () => {
   const [close, setClose] = useState(false);
   const [categoryData, setCategoryData] = useState(CategoryData);
+  const [selectedOption, setSelectedOption] = useState("");
+  const handleOptionChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedOption(event?.target.value);
+  };
   const toggleHandler = () => {
     setClose((prev) => !prev);
   };
@@ -18,6 +22,16 @@ const Categories = () => {
       current.filter((card: CategoryProps) => card.id != dataId)
     );
   };
+  let data;
+
+  if (selectedOption === "large") {
+    data = categoryData.filter((item) => item.category === "large");
+  } else if (selectedOption === "middle") {
+    data = categoryData.filter((item) => item.category === "middle");
+  } else {
+    data = categoryData;
+  }
+
   return (
     <div className="text-black">
       <Head>
@@ -36,7 +50,11 @@ const Categories = () => {
             <ButtonPrimary title="Create Category" />
           </div>
         </div>
-        <Filter type="selector" />
+        <Filter
+          type="selector"
+          selectedOption={selectedOption}
+          handleOptionChange={handleOptionChange}
+        />
         <div className="flex flex-col border-l-8 border-dark_blue shadow-lg rounded-md">
           <div className="bg-primary_white  px-4 py-2  flex items-center justify-between ">
             <h4 className="font-bold text-lg">Category</h4>
@@ -72,7 +90,7 @@ const Categories = () => {
         </div>
         {/* Target Items */}
         <div className="flex flex-col space-y-1">
-          {categoryData.map((item, index) => {
+          {data.map((item, index) => {
             return (
               <div
                 key={item.id}
@@ -109,8 +127,26 @@ export default Categories;
 export const CategoryData = [
   {
     id: uuid(),
-    name: "Toilet",
+    name: "Category1",
     category: "large",
+    registeredDate: "2011.03.09",
+  },
+  {
+    id: uuid(),
+    name: "Category2",
+    category: "middle",
+    registeredDate: "2011.03.09",
+  },
+  {
+    id: uuid(),
+    name: "Category3",
+    category: "large",
+    registeredDate: "2011.03.09",
+  },
+  {
+    id: uuid(),
+    name: "Category4",
+    category: "middle",
     registeredDate: "2011.03.09",
   },
 ];

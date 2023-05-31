@@ -2,14 +2,16 @@ import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
 interface FilterProps {
   type?: "selector";
+  selectedOption?: string;
+  handleOptionChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
-const Filter = ({ type }: FilterProps) => {
+const Filter = ({ type, selectedOption, handleOptionChange }: FilterProps) => {
   const [filterWord, setFilterWord] = useState(["Checked", "Recently"]);
-  const [selectedOption, setSelectedOption] = useState("");
-  const handleOptionChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedOption(event?.target.value);
-  };
+  // const [selectedOption, setSelectedOption] = useState("");
+  // const handleOptionChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  //   setSelectedOption(event?.target.value);
+  // };
   return (
     <div className="bg-primary_white shadow-lg px-4 py-4 rounded-md flex items-center justify-between border-l-8 border-dark_blue">
       <span className="text-xl">Filter:</span>

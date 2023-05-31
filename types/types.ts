@@ -24,3 +24,19 @@ export interface DraftDataProps {
   progress: string;
   complationDate: string;
 }
+
+export interface ItemDataProps {
+  id: string;
+  check_item: string;
+  checkClass: string;
+  checkSubClass: string;
+  create_dt: string;
+  update_dt: string;
+}
+
+export interface TargetDataProps {
+  id: string;
+  facility: string;
+  create_dt: string;
+  update_dt: string;
+}

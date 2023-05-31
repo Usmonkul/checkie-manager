@@ -1,4 +1,3 @@
-import React from "react";
 import Head from "next/head";
 import { ButtonPrimary, PrimaryHeader } from "@/utils/utils";
 import { BiSearchAlt } from "react-icons/bi";
@@ -6,10 +5,18 @@ import { Filter } from "@/components";
 import { MdDeleteOutline, MdOutlineModeEdit } from "react-icons/md";
 import { useState } from "react";
 import { RegisterTarget } from "@/components";
+import { TargetDataProps } from "../../types/types";
+import { uuid } from "uuidv4";
 const Target = () => {
   const [close, setClose] = useState(false);
   const toggleHandler = () => {
     setClose((prev) => !prev);
+  };
+  const [targetData, setTargetData] = useState(TargetData);
+  const handleDelete = (dataId: string) => {
+    setTargetData((current: TargetDataProps[]) =>
+      current.filter((card: TargetDataProps) => card.id != dataId)
+    );
   };
   return (
     <div className="text-black">
@@ -58,26 +65,28 @@ const Target = () => {
         </div>
         {/* Target Items */}
         <div className="flex flex-col space-y-1">
-          <div className="bg-primary_white  px-4 py-3  flex items-center justify-between border-l-8 border-transparent  shadow-lg rounded-md">
-            <span className="text-lg font-medium min-w-[30px]">1</span>
-            <span className="text-lg min-w-[150px]">FireStation</span>
-            <span className="text-lg min-w-[150px]">2021.21.01</span>
-            <span className="text-lg min-w-[150px]">2021.21.01</span>
-            <div className="flex items-center space-x-7 text-2xl min-w-[100px]">
-              <MdOutlineModeEdit className="text-dark_blue hover:text-lightest_blue" />
-              <MdDeleteOutline className="text-dark_blue hover:text-red-500" />
-            </div>
-          </div>
-          <div className="bg-primary_white  px-4 py-3  flex items-center justify-between border-l-8 border-transparent shadow-lg rounded-md">
-            <span className="text-lg font-medium min-w-[30px]">1</span>
-            <span className="text-lg min-w-[150px]">FireStation</span>
-            <span className="text-lg min-w-[150px]">2021.21.01</span>
-            <span className="text-lg min-w-[150px]">2021.21.01</span>
-            <div className="flex items-center space-x-7 text-2xl min-w-[100px]">
-              <MdOutlineModeEdit className="text-dark_blue hover:text-lightest_blue" />
-              <MdDeleteOutline className="text-dark_blue hover:text-red-500" />
-            </div>
-          </div>
+          {targetData.map((item, index) => {
+            return (
+              <div
+                key={item.id}
+                className="bg-primary_white  px-4 py-3  flex items-center justify-between border-l-8 border-transparent  shadow-lg rounded-md"
+              >
+                <span className="text-lg font-medium min-w-[30px]">
+                  {index + 1}
+                </span>
+                <span className="text-lg min-w-[150px]">{item.facility}</span>
+                <span className="text-lg min-w-[150px]">{item.create_dt}</span>
+                <span className="text-lg min-w-[150px]">{item.update_dt}</span>
+                <div className="flex items-center space-x-7 text-2xl min-w-[100px]">
+                  <MdOutlineModeEdit className="text-dark_blue hover:text-lightest_blue" />
+                  <MdDeleteOutline
+                    onClick={() => handleDelete(item.id)}
+                    className="text-dark_blue hover:text-red-500"
+                  />
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
@@ -85,3 +94,30 @@ const Target = () => {
 };
 
 export default Target;
+
+export const TargetData = [
+  {
+    id: uuid(),
+    facility: "Fite Station",
+    create_dt: "2011.03.09",
+    update_dt: "2011.03.10",
+  },
+  {
+    id: uuid(),
+    facility: "Office",
+    create_dt: "2011.03.09",
+    update_dt: "2011.03.10",
+  },
+  {
+    id: uuid(),
+    facility: "Plane Pruduction",
+    create_dt: "2011.03.09",
+    update_dt: "2011.03.10",
+  },
+  {
+    id: uuid(),
+    facility: "Fite Station",
+    create_dt: "2011.03.09",
+    update_dt: "2011.03.10",
+  },
+];

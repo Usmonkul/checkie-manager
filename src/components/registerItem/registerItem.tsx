@@ -23,7 +23,7 @@ const RegisterItem = ({
           className="absolute top-4 right-4 text-xl hover:text-red-700 cursor-pointer"
         />
         <div className="text-center pb-2">
-          <SecondaryHeader title="Resgister an Inspection Target" />
+          <SecondaryHeader title="Resgister an Inspection Item" />
         </div>
         <Formik
           initialValues={{

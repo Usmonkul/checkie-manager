@@ -81,7 +81,9 @@ const CreateInspector = ({
               name="inspectorName"
               type="text"
             />
-            <ErrorMessage name="inspectorName" />
+            <ErrorMessage name="inspectorName">
+              {(msg) => <div style={{ color: "red" }}>{msg}</div>}
+            </ErrorMessage>
             {/*  */}
             <label className="text-lg font-semibold" htmlFor="inspectorNumber">
               Inspector Number
@@ -92,7 +94,9 @@ const CreateInspector = ({
               name="inspectorNumber"
               type="text"
             />
-            <ErrorMessage name="inspectorNumber" />
+            <ErrorMessage name="inspectorNumber">
+              {(msg) => <div style={{ color: "red" }}>{msg}</div>}
+            </ErrorMessage>
             {/*  */}
             <label className="text-lg font-semibold" htmlFor="inspectorEmail">
               Inspector Email
@@ -103,7 +107,9 @@ const CreateInspector = ({
               name="inspectorEmail"
               type="email"
             />
-            <ErrorMessage name="inspectorEmail" />
+            <ErrorMessage name="inspectorEmail">
+              {(msg) => <div style={{ color: "red" }}>{msg}</div>}
+            </ErrorMessage>
             {/*  */}
             <label className="text-lg font-semibold" htmlFor="description">
               Description

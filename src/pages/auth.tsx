@@ -1,12 +1,19 @@
 import Head from "next/head";
-import React from "react";
-
-const Auth = () => {
-  const handleSubmit = () => {
-    console.log("sumbitted");
-  };
+import React, { SetStateAction } from "react";
+import { Form, Formik, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import { useUserStore } from "@/context/auth.context";
+const Auth = ({
+  setUser,
+}: {
+  setUser?: (newUser: { username: string; password: string }) => void;
+}) => {
+  const { setIsUserExist, user, updatedUser } = useUserStore();
+  if (user.username === "admin007" && user.password === "admin0707") {
+    setIsUserExist();
+  }
   return (
-    <div className="absolute top-0  h-screen w-screen grid items-center justify-center overflow-hidden text-black">
+    <div className="absolute top-0 left-0  h-screen w-screen grid items-center justify-center overflow-hidden text-black bg-gray-500/50 z-50">
       <Head>
         <title>Sign In</title>
       </Head>
@@ -16,53 +23,81 @@ const Auth = () => {
             Sign In
           </h2>
         </div>
-        <form
-          onSubmit={handleSubmit}
-          className="w-[80%] flex flex-col items-center mx-auto py-7"
+        <Formik
+          initialValues={{
+            username: "",
+            password: "",
+          }}
+          validationSchema={Yup.object({
+            username: Yup.string()
+              .max(15, "Must be 15 characters or less")
+              .min(4, "There should be at least 4 characters")
+              .required("Required"),
+            password: Yup.string()
+              .max(15, "Must be 15 characters or less")
+              .min(4, "There should be at least 4 characters")
+              .required("Required"),
+          })}
+          onSubmit={(values, { setSubmitting }) => {
+            setTimeout(() => {
+              const newUser = {
+                username: values.username,
+                password: values.password,
+              };
+              updatedUser(newUser);
+              setSubmitting(false);
+            }, 400);
+          }}
         >
-          <div className="w-full mb-5">
-            <label
-              className="text-lg font-medium block mb-2"
-              htmlFor="username"
+          <Form className="w-[80%] flex flex-col items-center mx-auto py-7">
+            <div className="w-full mb-5">
+              <label
+                className="text-lg font-medium block mb-2"
+                htmlFor="username"
+              >
+                Username
+              </label>
+              <Field
+                name="username"
+                type="text"
+                className="w-full bg-gray-300 rounded-md px-3 py-3 outline-light_blue"
+                placeholder="Username is admin007"
+              />
+              <ErrorMessage name="username">
+                {(msg) => <div style={{ color: "red" }}>{msg}</div>}
+              </ErrorMessage>
+            </div>
+            <div className="w-full">
+              <label
+                className="text-lg font-medium block mb-2"
+                htmlFor="password"
+              >
+                Password
+              </label>
+              <Field
+                name="password"
+                type="text"
+                className="w-full bg-gray-300 rounded-md px-3 py-3 outline-light_blue"
+                placeholder="Password is admin0707"
+              />
+              <ErrorMessage name="password">
+                {(msg) => <div style={{ color: "red" }}>{msg}</div>}
+              </ErrorMessage>
+            </div>
+            <div className="text-sm mt-2 ml-auto font-semibold cursor-pointer">
+              Forget{" "}
+              <span className="text-light_blue underline">
+                username / password?
+              </span>
+            </div>
+            <button
+              className="w-full bg-light_blue py-3 rounded-md uppercase font-bold text-white tracking-wide mb-5 mt-7 hover:bg-lightest_blue transition-all"
+              type="submit"
             >
-              Username
-            </label>
-            <input
-              name="username"
-              id="username"
-              type="text"
-              className="w-full bg-gray-300 rounded-md px-3 py-3 outline-light_blue"
-              placeholder="Enter your username..."
-            />
-          </div>
-          <div className="w-full">
-            <label
-              className="text-lg font-medium block mb-2"
-              htmlFor="password"
-            >
-              Password
-            </label>
-            <input
-              id="password"
-              name="password"
-              type="text"
-              className="w-full bg-gray-300 rounded-md px-3 py-3 outline-light_blue"
-              placeholder="Enter your password..."
-            />
-          </div>
-          <div className="text-sm mt-2 ml-auto font-semibold cursor-pointer">
-            Forget{" "}
-            <span className="text-light_blue underline">
-              username / password?
-            </span>
-          </div>
-          <button
-            className="w-full bg-light_blue py-3 rounded-md uppercase font-bold text-white tracking-wide mb-5 mt-7 hover:bg-lightest_blue transition-all"
-            type="submit"
-          >
-            Sing In
-          </button>
-        </form>
+              Sing In
+            </button>
+          </Form>
+        </Formik>
       </div>
     </div>
   );

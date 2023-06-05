@@ -1,6 +1,20 @@
 import { create } from "zustand";
 
-export const useUserStore = create((set) => ({
+interface User {
+  username: string;
+  password: string;
+}
+
+interface UserStore {
+  user: User;
+  isUserExist: boolean;
+  isLoading: boolean;
+  setIsUserExist: () => void;
+  setIsUserExistFalse: () => void;
+  updateUser: (updatedUser: Partial<User>) => void;
+}
+
+export const useUserStore = create<UserStore>((set) => ({
   user: {
     username: "",
     password: "",
@@ -16,8 +30,9 @@ export const useUserStore = create((set) => ({
         password: "",
       },
     }),
-  updatedUser: (updatedUser) =>
+  updateUser: (updatedUser) =>
     set((state) => ({
+      ...state,
       user: {
         ...state.user,
         ...updatedUser,

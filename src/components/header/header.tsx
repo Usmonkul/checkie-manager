@@ -4,7 +4,9 @@ import { RiAccountCircleLine } from "react-icons/ri";
 import { HiOutlineShieldCheck } from "react-icons/hi";
 import { useUserStore } from "@/context/auth.context";
 const Header = () => {
-  const { setIsUserExistFalse } = useUserStore();
+  const setIsUserExistFalse = useUserStore(
+    (state) => state.setIsUserExistFalse
+  );
   return (
     <header className="fixed left-0 right-0 top-0 !z-50 flex items-center justify-between py-4 px-6 bg-dark_blue h-[80px]">
       <div className="flex items-center space-x-3">

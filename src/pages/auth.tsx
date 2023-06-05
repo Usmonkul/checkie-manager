@@ -8,7 +8,9 @@ const Auth = ({
 }: {
   setUser?: (newUser: { username: string; password: string }) => void;
 }) => {
-  const { setIsUserExist, user, updatedUser } = useUserStore();
+  const setIsUserExist = useUserStore((state) => state.setIsUserExist);
+  const user = useUserStore((state) => state.user);
+  const updatedUser = useUserStore((state) => state.updateUser);
   if (user.username === "admin007" && user.password === "admin0707") {
     setIsUserExist();
   }

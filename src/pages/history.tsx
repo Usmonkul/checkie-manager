@@ -2,7 +2,7 @@ import React from "react";
 import Head from "next/head";
 import { ButtonPrimary, PrimaryHeader } from "@/utils/utils";
 import { BiSearchAlt } from "react-icons/bi";
-import { uuid } from "uuidv4";
+import { v4 as uuid_v4 } from "uuid";
 const History = () => {
   return (
     <div className="text-black">
@@ -66,43 +66,43 @@ export default History;
 
 export const HistoryData = [
   {
-    id: uuid(),
+    id: uuid_v4(),
     name: "Fire Inspection Zone",
     inspector: "Donalt J Trump",
     date: "2011.03.09",
   },
   {
-    id: uuid(),
+    id: uuid_v4(),
     name: "Fire Inspection Zone",
     inspector: "Donalt J Trump",
     date: "2011.03.09",
   },
   {
-    id: uuid(),
+    id: uuid_v4(),
     name: "Fire Inspection Zone",
     inspector: "Donalt J Trump",
     date: "2011.03.09",
   },
   {
-    id: uuid(),
+    id: uuid_v4(),
     name: "Fire Inspection Zone",
     inspector: "Donalt J Trump",
     date: "2011.03.09",
   },
   {
-    id: uuid(),
+    id: uuid_v4(),
     name: "Fire Inspection Zone",
     inspector: "Donalt J Trump",
     date: "2011.03.09",
   },
   {
-    id: uuid(),
+    id: uuid_v4(),
     name: "Fire Inspection Zone",
     inspector: "Donalt J Trump",
     date: "2011.03.09",
   },
   {
-    id: uuid(),
+    id: uuid_v4(),
     name: "Fire Inspection Zone",
     inspector: "Donalt J Trump",
     date: "2011.03.09",

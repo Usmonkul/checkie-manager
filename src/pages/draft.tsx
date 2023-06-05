@@ -2,7 +2,7 @@ import { useState } from "react";
 import Head from "next/head";
 import { ButtonPrimary, PrimaryHeader } from "@/utils/utils";
 import { BiSearchAlt } from "react-icons/bi";
-import { uuid } from "uuidv4";
+import { v4 as uuid_v4 } from "uuid";
 import { MdDeleteOutline } from "react-icons/md";
 import { DraftDataProps } from "../../types/types";
 const Draft = () => {
@@ -101,7 +101,7 @@ export default Draft;
 
 export const DraftData = [
   {
-    id: uuid(),
+    id: uuid_v4(),
     title: "Fire Inspection Zone",
     inspector: "Donalt J Trump",
     inspectionDate: "2011.03.09",
@@ -110,7 +110,7 @@ export const DraftData = [
     complationDate: "2010.04.03",
   },
   {
-    id: uuid(),
+    id: uuid_v4(),
     title: "Fire Inspection Zone",
     inspector: "Donalt J Trump",
     inspectionDate: "2011.03.09",
@@ -119,7 +119,7 @@ export const DraftData = [
     complationDate: "2010.04.03",
   },
   {
-    id: uuid(),
+    id: uuid_v4(),
     title: "Fire Inspection Zone",
     inspector: "Donalt J Trump",
     inspectionDate: "2011.03.09",
@@ -128,7 +128,7 @@ export const DraftData = [
     complationDate: "2010.04.03",
   },
   {
-    id: uuid(),
+    id: uuid_v4(),
     title: "Fire Inspection Zone",
     inspector: "Donalt J Trump",
     inspectionDate: "2011.03.09",

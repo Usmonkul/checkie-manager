@@ -4,11 +4,11 @@ import Head from "next/head";
 import { PrimaryHeader, ButtonPrimary } from "@/utils/utils";
 import { BiSearchAlt } from "react-icons/bi";
 import InspectorCard from "@/components/inspectorCard/inspectorCard";
-import { uuid } from "uuidv4";
+import { v4 as uuid_v4 } from "uuid";
 import { CreateInspector } from "@/components";
 export const dataBase = [
   {
-    id: uuid(),
+    id: uuid_v4(),
     name: "Donalt Trump",
     job: "Inspector in Tech Lab",
     email: "trump@gmail.com",
@@ -17,7 +17,7 @@ export const dataBase = [
     image: "https://placehold.co/600x400",
   },
   {
-    id: uuid(),
+    id: uuid_v4(),
     name: "Donalt Trump",
     job: "Inspector in Tech Lab",
     email: "trump@gmail.com",
@@ -26,7 +26,7 @@ export const dataBase = [
     image: "https://placehold.co/600x400",
   },
   {
-    id: uuid(),
+    id: uuid_v4(),
     name: "Donalt Trump",
     job: "Inspector in Tech Lab",
     email: "trump@gmail.com",
@@ -35,7 +35,7 @@ export const dataBase = [
     image: "https://placehold.co/600x400",
   },
   {
-    id: uuid(),
+    id: uuid_v4(),
     name: "Donalt Trump",
     job: "Inspector in Tech Lab",
     email: "trump@gmail.com",
@@ -44,7 +44,7 @@ export const dataBase = [
     image: "https://placehold.co/600x400",
   },
   {
-    id: uuid(),
+    id: uuid_v4(),
     name: "Donalt Trump",
     job: "Inspector in Tech Lab",
     email: "trump@gmail.com",
@@ -53,7 +53,7 @@ export const dataBase = [
     image: "https://placehold.co/600x400",
   },
   {
-    id: uuid(),
+    id: uuid_v4(),
     name: "Donalt Trump",
     job: "Inspector in Tech Lab",
     email: "trump@gmail.com",

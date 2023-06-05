@@ -5,7 +5,7 @@ import { BiSearchAlt } from "react-icons/bi";
 import { CreateCategory, Filter } from "@/components";
 import { MdDeleteOutline, MdOutlineModeEdit } from "react-icons/md";
 import { useState } from "react";
-import { uuid } from "uuidv4";
+import { v4 as uuid_v4 } from "uuid";
 import { CategoryProps } from "../../types/types";
 const Categories = () => {
   const [close, setClose] = useState(false);
@@ -126,25 +126,25 @@ export default Categories;
 
 export const CategoryData = [
   {
-    id: uuid(),
+    id: uuid_v4(),
     name: "Category1",
     category: "large",
     registeredDate: "2011.03.09",
   },
   {
-    id: uuid(),
+    id: uuid_v4(),
     name: "Category2",
     category: "middle",
     registeredDate: "2011.03.09",
   },
   {
-    id: uuid(),
+    id: uuid_v4(),
     name: "Category3",
     category: "large",
     registeredDate: "2011.03.09",
   },
   {
-    id: uuid(),
+    id: uuid_v4(),
     name: "Category4",
     category: "middle",
     registeredDate: "2011.03.09",

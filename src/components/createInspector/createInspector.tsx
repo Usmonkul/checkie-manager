@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { AiOutlineClose } from "react-icons/ai";
-import { uuid } from "uuidv4";
+import { v4 as uuid_v4 } from "uuid";
 import { dataBase } from "@/pages/inspectors";
 
 const CreateInspector = ({
@@ -48,7 +48,7 @@ const CreateInspector = ({
           })}
           onSubmit={(values, { setSubmitting, resetForm }) => {
             dataBase.push({
-              id: uuid(),
+              id: uuid_v4(),
               name: values.inspectorName,
               job: "Inspector in Tech Lab",
               email: values.inspectorEmail,

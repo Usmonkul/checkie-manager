@@ -6,7 +6,7 @@ import { MdDeleteOutline, MdOutlineModeEdit } from "react-icons/md";
 import { useState } from "react";
 import { RegisterTarget } from "@/components";
 import { TargetDataProps } from "../../types/types";
-import { uuid } from "uuidv4";
+import { v4 as uuid_v4 } from "uuid";
 const Target = () => {
   const [close, setClose] = useState(false);
   const toggleHandler = () => {
@@ -97,25 +97,25 @@ export default Target;
 
 export const TargetData = [
   {
-    id: uuid(),
+    id: uuid_v4(),
     facility: "Fite Station",
     create_dt: "2011.03.09",
     update_dt: "2011.03.10",
   },
   {
-    id: uuid(),
+    id: uuid_v4(),
     facility: "Office",
     create_dt: "2011.03.09",
     update_dt: "2011.03.10",
   },
   {
-    id: uuid(),
+    id: uuid_v4(),
     facility: "Plane Pruduction",
     create_dt: "2011.03.09",
     update_dt: "2011.03.10",
   },
   {
-    id: uuid(),
+    id: uuid_v4(),
     facility: "Fite Station",
     create_dt: "2011.03.09",
     update_dt: "2011.03.10",

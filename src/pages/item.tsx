@@ -6,7 +6,7 @@ import { Filter } from "@/components";
 import { MdDeleteOutline, MdOutlineModeEdit } from "react-icons/md";
 import { useState } from "react";
 import { RegisterItem } from "@/components";
-import { uuid } from "uuidv4";
+import { v4 as uuid_v4 } from "uuid";
 import { ItemDataProps } from "../../types/types";
 const Item = () => {
   const [close, setClose] = useState(false);
@@ -110,7 +110,15 @@ const Item = () => {
 export default Item;
 export const ItemData = [
   {
-    id: uuid(),
+    id: uuid_v4(),
+    check_item: "Power Pressure check",
+    checkClass: "large",
+    checkSubClass: "Basic",
+    create_dt: "2011.03.09",
+    update_dt: "2011.03.10",
+  },
+  {
+    id: uuid_v4(),
     check_item: "Power Pressure check",
     checkClass: "large",
     checkSubClass: "Basic",

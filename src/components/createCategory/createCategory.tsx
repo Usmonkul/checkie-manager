@@ -3,7 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { AiOutlineClose, AiOutlineArrowDown } from "react-icons/ai";
 import { CategoryData } from "@/pages/categories";
-import { uuid } from "uuidv4";
+import { v4 as uuid_v4 } from "uuid";
 import { CategoryProps } from "../../../types/types";
 
 const CreateCategory = ({
@@ -46,7 +46,7 @@ const CreateCategory = ({
             const newCategory = [
               ...categoryData,
               {
-                id: uuid(),
+                id: uuid_v4(),
                 name: values.categoryName,
                 category: values.categoryType,
                 registeredDate: "2012.02.21",

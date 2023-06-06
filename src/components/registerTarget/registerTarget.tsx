@@ -15,9 +15,9 @@ const RegisterTarget = ({
     <div
       className={`fixed top-0 left-0 z-50 ${
         !close ? "hidden" : "flex"
-      } items-center justify-center w-full h-full bg-gray-300/90 overflow-hidden`}
+      } items-center justify-center w-full h-full bg-gray-300/90 overflow-y-scroll pt-7`}
     >
-      <div className="relative min-w-[700px] flex flex-col bg-white shadow-xl px-8 py-5 rounded-md space-y-3 ">
+      <div className="relative min-w-[700px] flex flex-col bg-white shadow-xl px-8 py-5 rounded-md space-y-3 mt-10">
         <AiOutlineClose
           onClick={toggleHandler}
           className="absolute top-4 right-4 text-xl hover:text-red-700 cursor-pointer"
@@ -30,6 +30,10 @@ const RegisterTarget = ({
             tagName: "",
             tagId: "",
             items: [],
+            schedule: "",
+            date: "",
+            inspectors: [],
+            image: "",
           }}
           validationSchema={Yup.object({
             tagName: Yup.string()
@@ -40,18 +44,21 @@ const RegisterTarget = ({
               .required("Required"),
           })}
           onSubmit={(values, { setSubmitting, resetForm }) => {
-            setSubmitting(false);
-            resetForm({
-              values: {
-                tagName: "",
-                tagId: "",
-                items: [],
-              },
-            });
-            // setTimeout(() => {
-            //   alert(JSON.stringify(values, null, 2));
-            //   setSubmitting(false);
-            // }, 400);
+            setTimeout(() => {
+              alert(JSON.stringify(values, null, 2));
+              setSubmitting(false);
+              resetForm({
+                values: {
+                  tagName: "",
+                  tagId: "",
+                  items: [],
+                  schedule: "",
+                  date: "",
+                  inspectors: [],
+                  image: "",
+                },
+              });
+            }, 400);
           }}
         >
           <Form className="flex flex-col space-y-3">
@@ -103,7 +110,7 @@ const RegisterTarget = ({
                   Date range
                 </label>
                 <Field
-                  name="schedule"
+                  name="date"
                   as="select"
                   className="rounded-md px-4 py-2 border-2 border-slate-350"
                 >
@@ -118,6 +125,16 @@ const RegisterTarget = ({
             <Select
               title="Select an Inspector"
               placeholder="Select inspectors"
+            />
+            {/*  */}
+            <label className="text-lg font-semibold" htmlFor="image">
+              Choose image <span className="text-xs">Only one</span>
+            </label>
+            <Field
+              className="rounded-md px-4 py-2 border-2 border-slate-350"
+              placeholder="Enter a target name..."
+              name="image"
+              type="file"
             />
             <div className="flex items-center justify-between pt-4 space-x-6">
               <button

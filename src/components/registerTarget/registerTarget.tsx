@@ -3,6 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { AiOutlineClose, AiOutlineArrowDown } from "react-icons/ai";
 import { useState } from "react";
+
 const RegisterTarget = ({
   close,
   toggleHandler,
@@ -80,6 +81,40 @@ const RegisterTarget = ({
               title="Select an Item"
               placeholder="Select inspection item"
             />
+            {/*  */}
+            <div className="flex items-center justify-between">
+              <div className="flex flex-col space-y-4 w-[350px]">
+                <label className="text-lg font-semibold" htmlFor="schedule">
+                  Select an inspection schedule
+                </label>
+                <Field
+                  name="schedule"
+                  as="select"
+                  className="rounded-md px-4 py-2 border-2 border-slate-350"
+                >
+                  <option value="anytime">Anytime</option>
+                  <option value="everyday">Every day</option>
+                  <option value="everyweek">Every week</option>
+                  <option value="everymonth">Every Month</option>
+                </Field>
+              </div>
+              <div className="flex flex-col space-y-4 ">
+                <label className="text-lg font-semibold" htmlFor="">
+                  Date range
+                </label>
+                <Field
+                  name="schedule"
+                  as="select"
+                  className="rounded-md px-4 py-2 border-2 border-slate-350"
+                >
+                  <option value="anytime">Anytime</option>
+                  <option value="everyday">Every day</option>
+                  <option value="everyweek">Every week</option>
+                  <option value="everymonth">Every Month</option>
+                </Field>
+              </div>
+            </div>
+            {/*  */}
             <Select
               title="Select an Inspector"
               placeholder="Select inspectors"

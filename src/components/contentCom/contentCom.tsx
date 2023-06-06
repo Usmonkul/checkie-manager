@@ -14,41 +14,76 @@ const ContentCom = ({
   };
   return (
     <div className="rounded-md px-4 py-2 border-2 border-slate-350">
-      {typeSelect === "textarea" && (
-        <div>
-          <Field
-            placeholder="Enter a text content..."
-            as="textarea"
-            id="content"
-            name="content"
-            className="w-full border-b-2 p-2"
-          />
-        </div>
-      )}
+      <div>
+        <Field
+          placeholder="Enter a text content..."
+          as="textarea"
+          name="textContent"
+          className="w-full border-b-2 p-2"
+        />
+      </div>
       {typeSelect === "radio" && (
         <div className="flex flex-col space-y-3 w-full border-b-2 p-2">
-          <label>
-            <Field type="radio" name="content" value="Option 1" />
-            Option 1
+          <label className="flex items-center space-x-4">
+            <Field
+              className=" w-4 h-4"
+              type="radio"
+              name="radio1"
+              value="Option 1"
+            />
+            <Field
+              className="border-2 rounded-md p-1"
+              placeholder="Enter a text"
+              type="text"
+              name="radio1Input"
+            />
           </label>
-          <label>
-            <Field type="radio" name="content" value="Option 2" />
-            Option 2
+          <label className="flex items-center space-x-4">
+            <Field
+              className=" w-4 h-4"
+              type="radio"
+              name="radio2"
+              value="Option 2"
+            />
+            <Field
+              className="border-2 rounded-md p-1"
+              placeholder="Enter a text"
+              type="text"
+              name="radio2Input"
+            />
           </label>
-          <ErrorMessage name="content" component="div" />
         </div>
       )}
       {typeSelect === "checkbox" && (
         <div className="flex flex-col space-y-3 w-full border-b-2 p-2">
-          <label>
-            <Field type="checkbox" name="content" value="Option 1" />
-            Option 1
+          <label className="flex items-center space-x-4">
+            <Field
+              className=" w-4 h-4"
+              type="checkbox"
+              name="checkbox1"
+              value="Option 1"
+            />
+            <Field
+              className="border-2 rounded-md p-1"
+              placeholder="Enter a text"
+              type="text"
+              name="checkbox1Input"
+            />
           </label>
-          <label>
-            <Field type="checkbox" name="content" value="Option 2" />
-            Option 2
+          <label className="flex items-center space-x-4">
+            <Field
+              className=" w-4 h-4"
+              type="checkbox"
+              name="checkbox2"
+              value="Option 2"
+            />
+            <Field
+              className="border-2 rounded-md p-1"
+              placeholder="Enter a text"
+              type="text"
+              name="checkbox2Input"
+            />
           </label>
-          <ErrorMessage name="content" component="div" />
         </div>
       )}
       <div className="py-2 flex items-center justify-between">

@@ -14,7 +14,7 @@ const SideNavigationLink = ({
 }) => {
   return (
     <li
-      className={`flex py-2 hover:bg-slate-400/75 hover:text-light_blue transition-all ${
+      className={`flex py-2 hover:bg-slate-400/75 hover:text-black transition-all ${
         hovered ? "pl-8" : ""
       }`}
     >

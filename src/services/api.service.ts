@@ -5,6 +5,6 @@ export const API_REQUEST = {
   inspector: `${base_url}/inspector/find`,
   categoryL: `${base_url}/check-class/find`,
   categoryM: `${base_url}/check-sub-class/find`,
-  item: `${base_url}/check-item/find`,
+  check_item: `${base_url}/check-item/find`,
   content: `${base_url}/check-item/contentfind`,
 };

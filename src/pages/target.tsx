@@ -7,15 +7,17 @@ import { useState } from "react";
 import { RegisterTarget } from "@/components";
 import { TargetDataProps } from "../../types/types";
 import { v4 as uuid_v4 } from "uuid";
-const Target = () => {
+import { API_REQUEST } from "@/services/api.service";
+import { TargetProps } from "../../types/types";
+const Target = ({ target }: { target: TargetProps[] }) => {
   const [close, setClose] = useState(false);
   const toggleHandler = () => {
     setClose((prev) => !prev);
   };
-  const [targetData, setTargetData] = useState(TargetData);
-  const handleDelete = (dataId: string) => {
-    setTargetData((current: TargetDataProps[]) =>
-      current.filter((card: TargetDataProps) => card.id != dataId)
+  const [targetData, setTargetData] = useState(target);
+  const handleDelete = (dataId: number) => {
+    setTargetData((current: TargetProps[]) =>
+      current.filter((card: TargetProps) => card.idx != dataId)
     );
   };
   return (
@@ -50,7 +52,7 @@ const Target = () => {
           </div>
           <div className=" bg-gray-100/40 px-4 py-1 flex items-center justify-between">
             <span className="text-lg font-medium min-w-[30px]">ID</span>
-            <span className="text-lg font-medium min-w-[150px]">Facility</span>
+            <span className="text-lg font-medium min-w-[150px]">Target</span>
             <span className="text-lg font-medium min-w-[150px]">
               Registered Date
             </span>
@@ -68,19 +70,21 @@ const Target = () => {
           {targetData.map((item, index) => {
             return (
               <div
-                key={item.id}
-                className="bg-primary_white  px-4 py-3  flex items-center justify-between border-l-8 border-transparent  shadow-lg rounded-md"
+                key={item.idx}
+                className="bg-primary_white  px-4 py-3  flex items-center justify-between border-l-8 border-transparent  shadow-lg rounded-md hover:scale-100"
               >
                 <span className="text-lg font-medium min-w-[30px]">
                   {index + 1}
                 </span>
-                <span className="text-lg min-w-[150px]">{item.facility}</span>
+                <span className="text-lg min-w-[150px]">
+                  {item.check_group}
+                </span>
                 <span className="text-lg min-w-[150px]">{item.create_dt}</span>
                 <span className="text-lg min-w-[150px]">{item.update_dt}</span>
                 <div className="flex items-center space-x-7 text-2xl min-w-[100px]">
                   <MdOutlineModeEdit className="text-dark_blue hover:text-lightest_blue" />
                   <MdDeleteOutline
-                    onClick={() => handleDelete(item.id)}
+                    onClick={() => handleDelete(item.idx)}
                     className="text-dark_blue hover:text-red-500"
                   />
                 </div>
@@ -95,6 +99,17 @@ const Target = () => {
 
 export default Target;
 
+export const getServerSideProps = async () => {
+  const target = await fetch(API_REQUEST.target).then((res) => res.json());
+
+  return {
+    props: {
+      target: target,
+    },
+  };
+};
+
+// Data for exerperiment
 export const TargetData = [
   {
     id: uuid_v4(),

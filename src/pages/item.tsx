@@ -7,16 +7,17 @@ import { MdDeleteOutline, MdOutlineModeEdit } from "react-icons/md";
 import { useState } from "react";
 import { RegisterItem } from "@/components";
 import { v4 as uuid_v4 } from "uuid";
-import { ItemDataProps } from "../../types/types";
-const Item = () => {
+import { ItemDataProps, ItemProps } from "../../types/types";
+import { API_REQUEST } from "@/services/api.service";
+const Item = ({ check_item }: { check_item: ItemProps[] }) => {
   const [close, setClose] = useState(false);
   const toggleHandler = () => {
     setClose((prev) => !prev);
   };
-  const [itemData, setItemData] = useState(ItemData);
-  const handleDelete = (dataId: string) => {
-    setItemData((current: ItemDataProps[]) =>
-      current.filter((card: ItemDataProps) => card.id != dataId)
+  const [itemData, setItemData] = useState(check_item);
+  const handleDelete = (dataId: number) => {
+    setItemData((current: ItemProps[]) =>
+      current.filter((card: ItemProps) => card.idx != dataId)
     );
   };
   return (
@@ -78,23 +79,27 @@ const Item = () => {
           {itemData.map((item, index) => {
             return (
               <div
-                key={item.id}
-                className="bg-primary_white  px-4 py-3  flex items-center justify-between border-l-8 border-transparent  shadow-lg rounded-md"
+                key={item.idx}
+                className="bg-primary_white  px-4 py-3  flex items-center justify-between border-l-8 border-transparent  shadow-lg rounded-md hover:scale-100"
               >
                 <span className="text-lg font-medium min-w-[30px]">
                   {index + 1}
                 </span>
-                <span className="text-lg min-w-[150px]">{item.check_item}</span>
-                <span className="text-lg min-w-[150px]">{item.checkClass}</span>
-                <span className="text-lg min-w-[150px]">
-                  {item.checkSubClass}
+                <span className="text-lg w-[150px]  truncate">
+                  {item.check_item}
+                </span>
+                <span className="text-lg w-[160px] truncate">
+                  {item.checkClass.check_class}
+                </span>
+                <span className="text-lg w-[150px] truncate">
+                  {item.checkSubClass.check_sub_class}
                 </span>
                 <span className="text-lg min-w-[150px]">{item.create_dt}</span>
                 <span className="text-lg min-w-[150px]">{item.update_dt}</span>
                 <div className="flex items-center space-x-7 text-2xl min-w-[100px]">
                   <MdOutlineModeEdit className="text-dark_blue hover:text-lightest_blue" />
                   <MdDeleteOutline
-                    onClick={() => handleDelete(item.id)}
+                    onClick={() => handleDelete(item.idx)}
                     className="text-dark_blue hover:text-red-500"
                   />
                 </div>
@@ -108,6 +113,19 @@ const Item = () => {
 };
 
 export default Item;
+
+export const getServerSideProps = async () => {
+  const check_item = await fetch(API_REQUEST.check_item).then((res) =>
+    res.json()
+  );
+
+  return {
+    props: {
+      check_item,
+    },
+  };
+};
+//Data for experiment
 export const ItemData = [
   {
     id: uuid_v4(),

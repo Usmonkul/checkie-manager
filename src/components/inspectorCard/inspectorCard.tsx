@@ -5,49 +5,49 @@ import {
   MdOutlineModeEdit,
   MdOutlineSecurityUpdateGood,
 } from "react-icons/md";
-import { InspectorsProps } from "../../../types/types";
+import { InspectorProps } from "../../../types/types";
 const InspectorCard = ({
   data,
   setinspectorData,
 }: {
-  data: InspectorsProps;
+  data: InspectorProps;
   setinspectorData: any;
 }) => {
-  const handleDelete = (dataId: string) => {
-    setinspectorData((current: InspectorsProps[]) =>
-      current.filter((card: InspectorsProps) => card.id != dataId)
+  const handleDelete = (dataId: number) => {
+    setinspectorData((current: InspectorProps[]) =>
+      current.filter((card: InspectorProps) => card.idx !== dataId)
     );
   };
   return (
-    <li className="w-[240px] flex flex-col items-center space-y-1 rounded-md p-3 bg-[#333]/30 transition-all hover:scale-105 shadow-md">
+    <li className="w-[270px] flex flex-col items-center space-y-2 rounded-md p-5 bg-[#333]/30 transition-all hover:scale-105 shadow-md">
       <Image
         src={"https://placehold.co/80x80/png"}
         alt="Inspector"
-        height={70}
-        width={70}
+        height={80}
+        width={80}
         className="rounded-full"
       />
-      <h3 className="font-semibold text-lg">{data.name}</h3>
-      <span className="font-medium text-base">{data.job}</span>
-      <div className="flex flex-col">
-        <span className="text-sm">
+      <h3 className="font-semibold text-2xl">{data.inspector_name}</h3>
+      <span className="font-medium text-lg">{data.inspector_description}</span>
+      <div className="flex flex-col space-y-1">
+        <span className="text-md">
           <span className="font-medium text-base">Email: </span>
-          {data.email}
+          {data.inspector_email}
         </span>
-        <span className="text-sm">
+        <span className="text-md">
           <span className="font-medium text-base">Phone: </span>
-          {data.phone}
+          {data.inspector_tel}
         </span>
-        <span className="text-sm">
+        <span className="text-md">
           <span className="font-medium text-base">Info: </span>
-          {data.description}
+          {data.inspector_description}
         </span>
       </div>
-      <div className="flex items-center space-x-5 text-2xl pt-2">
+      <div className="flex items-center space-x-6 text-3xl pt-2">
         <MdOutlineSecurityUpdateGood className="text-dark_blue hover:text-lightest_blue" />
         <MdOutlineModeEdit className="text-dark_blue hover:text-lightest_blue" />
         <MdDeleteOutline
-          onClick={() => handleDelete(data.id)}
+          onClick={() => handleDelete(data.idx)}
           className="text-dark_blue hover:text-red-500"
         />
       </div>

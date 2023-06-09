@@ -6,7 +6,7 @@ import { useUserStore } from "@/context/auth.context";
 const inter = Inter({ subsets: ["latin"] });
 import Intro from "@/components/intro/intro";
 
-export default function Home() {
+export default function Home({ inspector }: any) {
   const isUserExist = useUserStore((state) => state.isUserExist);
   return (
     <div className=" overflow-hidden">

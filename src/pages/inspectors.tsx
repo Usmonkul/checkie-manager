@@ -8,62 +8,62 @@ import { v4 as uuid_v4 } from "uuid";
 import { CreateInspector } from "@/components";
 import { API_REQUEST } from "@/services/api.service";
 import { InspectorProps } from "../../types/types";
-// export const dataBase = [
-//   {
-//     id: uuid_v4(),
-//     name: "Donalt Trump",
-//     job: "Inspector in Tech Lab",
-//     email: "trump@gmail.com",
-//     phone: "0107777777",
-//     description: "10 years of experience in his field",
-//     image: "https://placehold.co/600x400",
-//   },
-//   {
-//     id: uuid_v4(),
-//     name: "Donalt Trump",
-//     job: "Inspector in Tech Lab",
-//     email: "trump@gmail.com",
-//     phone: "0107777777",
-//     description: "10 years of experience in his field",
-//     image: "https://placehold.co/600x400",
-//   },
-//   {
-//     id: uuid_v4(),
-//     name: "Donalt Trump",
-//     job: "Inspector in Tech Lab",
-//     email: "trump@gmail.com",
-//     phone: "0107777777",
-//     description: "10 years of experience in his field",
-//     image: "https://placehold.co/600x400",
-//   },
-//   {
-//     id: uuid_v4(),
-//     name: "Donalt Trump",
-//     job: "Inspector in Tech Lab",
-//     email: "trump@gmail.com",
-//     phone: "0107777777",
-//     description: "10 years of experience in his field",
-//     image: "https://placehold.co/600x400",
-//   },
-//   {
-//     id: uuid_v4(),
-//     name: "Donalt Trump",
-//     job: "Inspector in Tech Lab",
-//     email: "trump@gmail.com",
-//     phone: "0107777777",
-//     description: "10 years of experience in his field",
-//     image: "https://placehold.co/600x400",
-//   },
-//   {
-//     id: uuid_v4(),
-//     name: "Donalt Trump",
-//     job: "Inspector in Tech Lab",
-//     email: "trump@gmail.com",
-//     phone: "0107777777",
-//     description: "10 years of experience in his field",
-//     image: "https://placehold.co/600x400",
-//   },
-// ];
+export const dataBase = [
+  {
+    id: uuid_v4(),
+    name: "Donalt Trump",
+    job: "Inspector in Tech Lab",
+    email: "trump@gmail.com",
+    phone: "0107777777",
+    description: "10 years of experience in his field",
+    image: "https://placehold.co/600x400",
+  },
+  {
+    id: uuid_v4(),
+    name: "Donalt Trump",
+    job: "Inspector in Tech Lab",
+    email: "trump@gmail.com",
+    phone: "0107777777",
+    description: "10 years of experience in his field",
+    image: "https://placehold.co/600x400",
+  },
+  {
+    id: uuid_v4(),
+    name: "Donalt Trump",
+    job: "Inspector in Tech Lab",
+    email: "trump@gmail.com",
+    phone: "0107777777",
+    description: "10 years of experience in his field",
+    image: "https://placehold.co/600x400",
+  },
+  {
+    id: uuid_v4(),
+    name: "Donalt Trump",
+    job: "Inspector in Tech Lab",
+    email: "trump@gmail.com",
+    phone: "0107777777",
+    description: "10 years of experience in his field",
+    image: "https://placehold.co/600x400",
+  },
+  {
+    id: uuid_v4(),
+    name: "Donalt Trump",
+    job: "Inspector in Tech Lab",
+    email: "trump@gmail.com",
+    phone: "0107777777",
+    description: "10 years of experience in his field",
+    image: "https://placehold.co/600x400",
+  },
+  {
+    id: uuid_v4(),
+    name: "Donalt Trump",
+    job: "Inspector in Tech Lab",
+    email: "trump@gmail.com",
+    phone: "0107777777",
+    description: "10 years of experience in his field",
+    image: "https://placehold.co/600x400",
+  },
+];
 
 const Inspectors = ({ inspector }: { inspector: InspectorProps[] }) => {
   const [inspectorData, setinspectorData] = useState(inspector);

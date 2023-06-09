@@ -62,7 +62,13 @@ const SideNavigation = () => {
           >
             <FcInspection className="text-2xl" />
           </SideNavigationLink>
-
+          <SideNavigationLink
+            navigation="content"
+            hovered={hovered}
+            name={`${hovered ? "Content" : ""}`}
+          >
+            <AiOutlineBulb className="text-2xl" />
+          </SideNavigationLink>
           <SideNavigationLink
             navigation="categories"
             hovered={hovered}
@@ -105,14 +111,6 @@ const SideNavigation = () => {
             name={`${hovered ? "Help" : ""}`}
           >
             <IoMdHelpCircleOutline className="text-2xl" />
-          </SideNavigationLink>
-
-          <SideNavigationLink
-            navigation="discover"
-            hovered={hovered}
-            name={`${hovered ? "Discover" : ""}`}
-          >
-            <AiOutlineBulb className="text-2xl" />
           </SideNavigationLink>
 
           <SideNavigationLink

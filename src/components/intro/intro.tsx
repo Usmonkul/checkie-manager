@@ -6,22 +6,27 @@ import { HiOutlineShieldCheck } from "react-icons/hi";
 import Link from "next/link";
 const Intro = () => {
   return (
-    <div className="relative left-5 top-10 flex flex-col space-y-32  text-black  pt-10">
+    <div className="relative left-5 top-10 flex flex-col space-y-32 text-black pt-10">
       {/* Hero */}
       <div className="flex w-full">
         <div className="flex flex-col w-[50%]">
-          <h2 className="text-3xl font-bold text-light_blue max-w-[700px] mb-7 mt-10">
+          <h2 className="text-5xl font-semibold text-light_blue max-w-[520px] mb-7 mt-10">
             Are you still using paper based inspection on your targets?
           </h2>
-          <h1 className="text-4xl font-bold  max-w-[700px] tracking-wide">
-            Use Checkie mobile app and an Inspection manager web app to do your
-            inspection fast, real-time, and without paper.
+          <h1 className="text-2xl font-bold  max-w-[600px] tracking-wide">
+            Use <span className="text-light_blue">Checkie mobile app</span> and
+            an{" "}
+            <span className="text-light_blue">Inspection manager web app</span>{" "}
+            to do your inspection fast, real-time, and without paper.
           </h1>
           <div className="flex items-center space-x-16 mt-10">
-            <div className="rounded-full block text-2xl font-semibold text-lightest_blue py-1 px-6 cursor-pointer border-2 border-light_blue  text-center w-[280px] hover:bg-slate-400/40 hover:text-white">
+            <a
+              href="mailto:support@idrgroup.co.kr"
+              className="rounded-full block text-2xl font-semibold text-lightest_blue py-1 px-6 cursor-pointer border-2 border-light_blue  text-center w-[280px] hover:bg-light_blue hover:text-white"
+            >
               Contact Us
-            </div>
-            <div className="rounded-full block text-2xl font-semibold text-lightest_blue py-1 px-6 cursor-pointer border-2 border-light_blue  text-center w-[280px] hover:bg-slate-400/40 hover:text-white">
+            </a>
+            <div className="rounded-full block text-2xl font-semibold text-lightest_blue py-1 px-6 cursor-pointer border-2 border-light_blue  text-center w-[280px] hover:bg-light_blue hover:text-white">
               Download App
             </div>
           </div>
@@ -39,13 +44,16 @@ const Intro = () => {
       {/* CTO */}
       <div className="flex flex-col items-center space-y-10 bg-green-200/10 py-10">
         <p className="text-2xl font-bold text-black max-w-[900px] text-center">
-          <span className="text-light_blue">If you scan the QR sticker</span>{" "}
+          <span className="text-light_blue">If you recognize Smart TAG</span>{" "}
           with your smartphone and enter the inspection details, You can check
           the facility inspection status at a glance.
         </p>
-        <div className="rounded-full block text-xl font-semibold text-white bg-light_blue py-2 px-6 cursor-pointer tracking-wider text-center w-[280px] border-2 border-transparent hover:bg-white hover:text-black hover:border-light_blue hover:border-2 transition-all duration-150 ">
+        <a
+          href="mailto:support@idrgroup.co.kr"
+          className="rounded-full block text-xl font-semibold text-white bg-light_blue py-2 px-6 cursor-pointer tracking-wider text-center w-[280px] border-2 border-transparent hover:bg-white hover:text-light_blue hover:border-light_blue hover:border-2 transition-all duration-150 "
+        >
           Contact Us
-        </div>
+        </a>
       </div>
       {/* Card */}
 

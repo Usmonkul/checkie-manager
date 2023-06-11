@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { useState } from "react";
 import Head from "next/head";
 import { PrimaryHeader, ButtonPrimary } from "@/utils/utils";
@@ -7,7 +6,8 @@ import InspectorCard from "@/components/inspectorCard/inspectorCard";
 import { v4 as uuid_v4 } from "uuid";
 import { CreateInspector } from "@/components";
 import { API_REQUEST } from "@/services/api.service";
-import { InspectorProps } from "../../types/types";
+import { InspectorProps, InspectorsProps } from "../../types/types";
+import { GetServerSideProps } from "next";
 export const dataBase = [
   {
     id: uuid_v4(),
@@ -83,9 +83,10 @@ const Inspectors = ({ inspector }: { inspector: InspectorProps[] }) => {
             <ButtonPrimary title="Add Inspector" />
           </div>
         </div>
-        <div className="bg-primary_white shadow-lg px-4 py-2 rounded-md flex items-center justify-between  border-l-8 border-dark_blue">
+        <div className="bg-primary_white shadow-lg px-4 py-3 rounded-md flex items-center justify-between  border-l-8 border-dark_blue">
           <h4 className="font-medium">
-            No: <span className="text-red-500">10</span>
+            Inspectors No:{" "}
+            <span className="ml-3 text-light_blue">{inspector.length}</span>
           </h4>
           <div className="flex items-center space-x-3">
             <input
@@ -101,7 +102,7 @@ const Inspectors = ({ inspector }: { inspector: InspectorProps[] }) => {
           </div>
         </div>
         <CreateInspector close={close} toggleHandler={toggleHandler} />
-        <ul className="list-none flex flex-wrap gap-3 justify-center">
+        <ul className="list-none flex flex-wrap gap-3 justify-start">
           {inspectorData.map((item: InspectorProps) => {
             return (
               <InspectorCard
@@ -119,14 +120,29 @@ const Inspectors = ({ inspector }: { inspector: InspectorProps[] }) => {
 
 export default Inspectors;
 
-export const getServerSideProps = async () => {
-  const [inspector] = await Promise.all([
-    fetch(API_REQUEST.inspector).then((res) => res.json()),
-  ]);
-
-  return {
-    props: {
-      inspector,
-    },
-  };
+interface InspectorsPageProps {
+  inspector: InspectorProps[];
+}
+export const getServerSideProps: GetServerSideProps<
+  InspectorsPageProps
+> = async () => {
+  try {
+    const response = await fetch(API_REQUEST.inspector);
+    if (!response.ok) {
+      throw new Error("Failed to fetch inspector data");
+    }
+    const inspector = await response.json();
+    return {
+      props: {
+        inspector,
+      },
+    };
+  } catch (error) {
+    console.error("Failed to fecht inspector data:", error);
+    return {
+      props: {
+        inspector: [],
+      },
+    };
+  }
 };

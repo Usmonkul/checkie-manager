@@ -57,7 +57,12 @@ const Categories = () => {
         />
         <div className="flex flex-col border-l-8 border-dark_blue shadow-lg rounded-md">
           <div className="bg-primary_white  px-4 py-2  flex items-center justify-between ">
-            <h4 className="font-bold text-lg">Category</h4>
+            <h4 className="font-bold text-lg">
+              Category List No:{" "}
+              <span className="ml-3 text-light_blue">
+                {CategoryData.length}
+              </span>
+            </h4>
             <div className="flex items-center space-x-3">
               <input
                 type="search"

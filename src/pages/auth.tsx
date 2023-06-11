@@ -1,5 +1,4 @@
 import Head from "next/head";
-import React, { SetStateAction } from "react";
 import { Form, Formik, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useUserStore } from "@/context/auth.context";
@@ -8,9 +7,12 @@ const Auth = ({
 }: {
   setUser?: (newUser: { username: string; password: string }) => void;
 }) => {
-  const setIsUserExist = useUserStore((state) => state.setIsUserExist);
-  const user = useUserStore((state) => state.user);
-  const updatedUser = useUserStore((state) => state.updateUser);
+  const { setIsUserExist, user, updatedUser } = useUserStore((state) => ({
+    setIsUserExist: state.setIsUserExist,
+    user: state.user,
+    updatedUser: state.updateUser,
+  }));
+
   if (user.username === "admin007" && user.password === "admin0707") {
     setIsUserExist();
   }
@@ -52,40 +54,18 @@ const Auth = ({
           }}
         >
           <Form className="w-[80%] flex flex-col items-center mx-auto py-7">
-            <div className="w-full mb-5">
-              <label
-                className="text-lg font-medium block mb-2"
-                htmlFor="username"
-              >
-                Username
-              </label>
-              <Field
-                name="username"
-                type="text"
-                className="w-full bg-gray-300 rounded-md px-3 py-3 outline-light_blue"
-                placeholder="Username is admin007"
-              />
-              <ErrorMessage name="username">
-                {(msg) => <div style={{ color: "red" }}>{msg}</div>}
-              </ErrorMessage>
-            </div>
-            <div className="w-full">
-              <label
-                className="text-lg font-medium block mb-2"
-                htmlFor="password"
-              >
-                Password
-              </label>
-              <Field
-                name="password"
-                type="text"
-                className="w-full bg-gray-300 rounded-md px-3 py-3 outline-light_blue"
-                placeholder="Password is admin0707"
-              />
-              <ErrorMessage name="password">
-                {(msg) => <div style={{ color: "red" }}>{msg}</div>}
-              </ErrorMessage>
-            </div>
+            <FormInput
+              label="Username"
+              type="text"
+              placeholder="Username is admin007"
+              name="username"
+            />
+            <FormInput
+              label="Password"
+              type="password"
+              placeholder="Password is admin0707"
+              name="password"
+            />
             <div className="text-sm mt-2 ml-auto font-semibold cursor-pointer">
               Forget{" "}
               <span className="text-light_blue underline">
@@ -106,3 +86,32 @@ const Auth = ({
 };
 
 export default Auth;
+
+export const FormInput = ({
+  label,
+  name,
+  type,
+  placeholder,
+}: {
+  label: string;
+  name: string;
+  type: string;
+  placeholder: string;
+}) => {
+  return (
+    <div className="w-full mb-5">
+      <label className="text-lg font-medium block mb-2" htmlFor={name}>
+        {label}
+      </label>
+      <Field
+        name={name}
+        type={type}
+        className="w-full bg-gray-300 rounded-md px-3 py-3 outline-light_blue"
+        placeholder={placeholder}
+      />
+      <ErrorMessage name={name}>
+        {(msg) => <div style={{ color: "red" }}>{msg}</div>}
+      </ErrorMessage>
+    </div>
+  );
+};

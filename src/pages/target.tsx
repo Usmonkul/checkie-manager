@@ -1,14 +1,14 @@
 import Head from "next/head";
 import { ButtonPrimary, PrimaryHeader } from "@/utils/utils";
 import { BiSearchAlt } from "react-icons/bi";
-import { Filter } from "@/components";
 import { MdDeleteOutline, MdOutlineModeEdit } from "react-icons/md";
 import { useState } from "react";
-import { RegisterTarget } from "@/components";
-import { TargetDataProps } from "../../types/types";
-import { v4 as uuid_v4 } from "uuid";
+import { RegisterTarget, Filter } from "@/components";
+// import { TargetDataProps } from "../../types/types";
+// import { v4 as uuid_v4 } from "uuid";
 import { API_REQUEST } from "@/services/api.service";
 import { TargetProps } from "../../types/types";
+import { GetServerSideProps } from "next";
 const Target = ({ target }: { target: TargetProps[] }) => {
   const [close, setClose] = useState(false);
   const toggleHandler = () => {
@@ -17,7 +17,7 @@ const Target = ({ target }: { target: TargetProps[] }) => {
   const [targetData, setTargetData] = useState(target);
   const handleDelete = (dataId: number) => {
     setTargetData((current: TargetProps[]) =>
-      current.filter((card: TargetProps) => card.idx != dataId)
+      current.filter((card: TargetProps) => card.idx !== dataId)
     );
   };
   return (
@@ -36,7 +36,10 @@ const Target = ({ target }: { target: TargetProps[] }) => {
         <Filter />
         <div className="flex flex-col border-l-8 border-dark_blue shadow-lg rounded-md">
           <div className="bg-primary_white  px-4 py-2  flex items-center justify-between ">
-            <h4 className="font-medium text-lg">Target List</h4>
+            <h4 className="font-medium text-lg">
+              Target List:{" "}
+              <span className="ml-3 text-light_blue">{target.length}</span>
+            </h4>
             <div className="flex items-center space-x-3">
               <input
                 type="search"
@@ -99,40 +102,57 @@ const Target = ({ target }: { target: TargetProps[] }) => {
 
 export default Target;
 
-export const getServerSideProps = async () => {
-  const target = await fetch(API_REQUEST.target).then((res) => res.json());
-
-  return {
-    props: {
-      target: target,
-    },
-  };
+interface TargetPageProps {
+  target: TargetProps[];
+}
+export const getServerSideProps: GetServerSideProps<
+  TargetPageProps
+> = async () => {
+  try {
+    const response = await fetch(API_REQUEST.target);
+    if (!response.ok) {
+      throw new Error("Failed to fetch target data");
+    }
+    const target = await response.json();
+    return {
+      props: {
+        target,
+      },
+    };
+  } catch (error) {
+    console.error("Failed to fecht target data:", error);
+    return {
+      props: {
+        target: [],
+      },
+    };
+  }
 };
 
 // Data for exerperiment
-export const TargetData = [
-  {
-    id: uuid_v4(),
-    facility: "Fite Station",
-    create_dt: "2011.03.09",
-    update_dt: "2011.03.10",
-  },
-  {
-    id: uuid_v4(),
-    facility: "Office",
-    create_dt: "2011.03.09",
-    update_dt: "2011.03.10",
-  },
-  {
-    id: uuid_v4(),
-    facility: "Plane Pruduction",
-    create_dt: "2011.03.09",
-    update_dt: "2011.03.10",
-  },
-  {
-    id: uuid_v4(),
-    facility: "Fite Station",
-    create_dt: "2011.03.09",
-    update_dt: "2011.03.10",
-  },
-];
+// export const TargetData = [
+//   {
+//     id: uuid_v4(),
+//     facility: "Fite Station",
+//     create_dt: "2011.03.09",
+//     update_dt: "2011.03.10",
+//   },
+//   {
+//     id: uuid_v4(),
+//     facility: "Office",
+//     create_dt: "2011.03.09",
+//     update_dt: "2011.03.10",
+//   },
+//   {
+//     id: uuid_v4(),
+//     facility: "Plane Pruduction",
+//     create_dt: "2011.03.09",
+//     update_dt: "2011.03.10",
+//   },
+//   {
+//     id: uuid_v4(),
+//     facility: "Fite Station",
+//     create_dt: "2011.03.09",
+//     update_dt: "2011.03.10",
+//   },
+// ];

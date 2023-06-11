@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Head from "next/head";
-import { ButtonPrimary, PrimaryHeader } from "@/utils/utils";
+import { PrimaryHeader } from "@/utils/utils";
 import { BiSearchAlt } from "react-icons/bi";
 import { v4 as uuid_v4 } from "uuid";
 import { MdDeleteOutline } from "react-icons/md";
@@ -24,7 +24,7 @@ const Draft = () => {
           <div className="bg-primary_white  px-4 py-2  flex items-center justify-between ">
             <h4 className="font-bold text-lg">
               Inspection Draft Query:{" "}
-              <span className="ml-3 text-light_blue">100</span>
+              <span className="ml-3 text-light_blue">{DraftData.length}</span>
             </h4>
             <div className="flex items-center space-x-3">
               <input
@@ -60,36 +60,9 @@ const Draft = () => {
         </div>
         {/* card Items */}
         <div className="flex flex-col space-y-1">
-          {draftData.map((item, index) => {
-            return (
-              <div
-                key={item.id}
-                className="bg-primary_white  px-4 py-3  flex items-center justify-between border-l-8 border-transparent  shadow-lg rounded-md"
-              >
-                <span className="text-lg font-medium min-w-[30px]">
-                  {index + 1}
-                </span>
-                <span className="text-lg min-w-[150px]">{item.title}</span>
-                <span className="text-lg min-w-[150px]">{item.inspector}</span>
-                <span className="text-lg min-w-[150px]">
-                  {item.inspectionDate}
-                </span>
-                <span className="text-lg min-w-[150px]">
-                  {item.registeredDate}
-                </span>
-                <span className="text-lg min-w-[150px]">{item.progress}</span>
-                <span className="text-lg min-w-[150px]">
-                  {item.complationDate}
-                </span>
-                <div className="flex items-center justify-center space-x-7 text-2xl min-w-[100px]">
-                  <MdDeleteOutline
-                    onClick={() => handleDelete(item.id)}
-                    className="text-dark_blue hover:text-red-500"
-                  />
-                </div>
-              </div>
-            );
-          })}
+          {draftData.map((item, index) => (
+            <DraftItem item={item} index={index} handleDelete={handleDelete} />
+          ))}
         </div>
       </div>
       {/*  */}
@@ -98,6 +71,37 @@ const Draft = () => {
 };
 
 export default Draft;
+
+export const DraftItem = ({
+  item,
+  index,
+  handleDelete,
+}: {
+  item: DraftDataProps;
+  index: number;
+  handleDelete: (dataId: string) => void;
+}): JSX.Element => {
+  return (
+    <div
+      key={item.id}
+      className="bg-primary_white  px-4 py-3  flex items-center justify-between border-l-8 border-transparent  shadow-lg rounded-md"
+    >
+      <span className="text-lg font-medium min-w-[30px]">{index + 1}</span>
+      <span className="text-lg min-w-[150px]">{item.title}</span>
+      <span className="text-lg min-w-[150px]">{item.inspector}</span>
+      <span className="text-lg min-w-[150px]">{item.inspectionDate}</span>
+      <span className="text-lg min-w-[150px]">{item.registeredDate}</span>
+      <span className="text-lg min-w-[150px]">{item.progress}</span>
+      <span className="text-lg min-w-[150px]">{item.complationDate}</span>
+      <div className="flex items-center justify-center space-x-7 text-2xl min-w-[100px]">
+        <MdDeleteOutline
+          onClick={() => handleDelete(item.id)}
+          className="text-dark_blue hover:text-red-500"
+        />
+      </div>
+    </div>
+  );
+};
 
 export const DraftData = [
   {

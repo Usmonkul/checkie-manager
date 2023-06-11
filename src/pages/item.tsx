@@ -6,10 +6,11 @@ import { Filter } from "@/components";
 import { MdDeleteOutline, MdOutlineModeEdit } from "react-icons/md";
 import { useState } from "react";
 import { RegisterItem } from "@/components";
-import { v4 as uuid_v4 } from "uuid";
+// import { v4 as uuid_v4 } from "uuid";
 import { ItemDataProps, ItemProps } from "../../types/types";
 import ItemPopup from "@/components/registerItem/itemPopup";
 import { API_REQUEST } from "@/services/api.service";
+import { GetServerSideProps } from "next";
 const Item = ({ check_item }: { check_item: ItemProps[] }) => {
   const [close, setClose] = useState(false);
   const [popup, setPopup] = useState(false);
@@ -40,7 +41,7 @@ const Item = ({ check_item }: { check_item: ItemProps[] }) => {
           <div className="bg-primary_white  px-4 py-2  flex items-center justify-between ">
             <h4 className="font-medium text-lg">
               Inspection items:{" "}
-              <span className="ml-3 text-light_blue">{30}</span>
+              <span className="ml-3 text-light_blue">{check_item.length}</span>
             </h4>
             <div className="flex items-center space-x-3">
               <input
@@ -120,33 +121,48 @@ const Item = ({ check_item }: { check_item: ItemProps[] }) => {
 
 export default Item;
 
-export const getServerSideProps = async () => {
-  const check_item = await fetch(API_REQUEST.check_item).then((res) =>
-    res.json()
-  );
-
-  return {
-    props: {
-      check_item,
-    },
-  };
+interface ItemPageProps {
+  check_item: ItemProps[];
+}
+export const getServerSideProps: GetServerSideProps<
+  ItemPageProps
+> = async () => {
+  try {
+    const response = await fetch(API_REQUEST.check_item);
+    if (!response.ok) {
+      throw new Error("Failed to fetch inspection item data");
+    }
+    const check_item = await response.json();
+    return {
+      props: {
+        check_item,
+      },
+    };
+  } catch (error) {
+    console.error("Failed to fecht inspection item data:", error);
+    return {
+      props: {
+        check_item: [],
+      },
+    };
+  }
 };
-//Data for experiment
-export const ItemData = [
-  {
-    id: uuid_v4(),
-    check_item: "Power Pressure check",
-    checkClass: "large",
-    checkSubClass: "Basic",
-    create_dt: "2011.03.09",
-    update_dt: "2011.03.10",
-  },
-  {
-    id: uuid_v4(),
-    check_item: "Power Pressure check",
-    checkClass: "large",
-    checkSubClass: "Basic",
-    create_dt: "2011.03.09",
-    update_dt: "2011.03.10",
-  },
-];
+// //Data for experiment
+// export const ItemData = [
+//   {
+//     id: uuid_v4(),
+//     check_item: "Power Pressure check",
+//     checkClass: "large",
+//     checkSubClass: "Basic",
+//     create_dt: "2011.03.09",
+//     update_dt: "2011.03.10",
+//   },
+//   {
+//     id: uuid_v4(),
+//     check_item: "Power Pressure check",
+//     checkClass: "large",
+//     checkSubClass: "Basic",
+//     create_dt: "2011.03.09",
+//     update_dt: "2011.03.10",
+//   },
+// ];

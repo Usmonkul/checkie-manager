@@ -20,15 +20,7 @@ const Header = () => {
           Checkie
         </Link>
       </div>
-      <div className="search">
-        <input
-          type="search"
-          name="search"
-          id="search"
-          placeholder="Search...."
-          className="hidden md:flex items-center lg:w-[300px] rounded-md px-4 border-none outline-none text-black h-[33px] focus:outline focus:outline-green-300"
-        />
-      </div>
+
       <div className="flex items-center space-x-7 uppercase">
         <ul className="flex items-center list-none space-x-7 font-semibold text-md text-primary_white">
           <li>
@@ -59,7 +51,9 @@ const Header = () => {
               className={`absolute right-2 -bottom-20 flex flex-col space-y-2 text-center bg-gray-800 rounded-md p-4 text-sm`}
             >
               <span className="font-bold">User:</span>
-              <span className="text-red-500">{username}</span>
+              <span className="text-red-500">
+                {username.length ? username : "No User"}
+              </span>
             </div>
           )}
         </div>

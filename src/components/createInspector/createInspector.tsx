@@ -1,5 +1,5 @@
-import { ButtonPrimary, SecondaryHeader } from "@/utils/utils";
-import { useState } from "react";
+import { SecondaryHeader } from "@/utils/utils";
+
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { AiOutlineClose } from "react-icons/ai";
@@ -13,7 +13,6 @@ const CreateInspector = ({
   close: boolean;
   toggleHandler: () => void;
 }) => {
-  const postUrl = "http://idrenvision.iptime.org:8089/inspector/insert";
   return (
     <div
       className={`fixed top-0 left-0 z-50 ${
@@ -66,6 +65,7 @@ const CreateInspector = ({
               update_dt: "",
             };
             const JSONdata = JSON.stringify(data);
+            console.log(JSONdata);
             const endpoint =
               "http://idrenvision.iptime.org:8089/inspector/insert";
             const options = {
@@ -77,6 +77,7 @@ const CreateInspector = ({
             };
             const response = await fetch(endpoint, options);
             const result = await response.json();
+            console.log(result);
             alert(`Your data: ${result.data}`);
             setSubmitting(false);
             resetForm({
@@ -88,10 +89,6 @@ const CreateInspector = ({
                 inspector_image: "",
               },
             });
-            // setTimeout(() => {
-            //   alert(JSON.stringify(values, null, 2));
-            //   setSubmitting(false);
-            // }, 400);
           }}
         >
           <Form className="flex flex-col space-y-3">

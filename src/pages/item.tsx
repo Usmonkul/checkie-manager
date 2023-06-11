@@ -8,9 +8,11 @@ import { useState } from "react";
 import { RegisterItem } from "@/components";
 import { v4 as uuid_v4 } from "uuid";
 import { ItemDataProps, ItemProps } from "../../types/types";
+import ItemPopup from "@/components/registerItem/itemPopup";
 import { API_REQUEST } from "@/services/api.service";
 const Item = ({ check_item }: { check_item: ItemProps[] }) => {
   const [close, setClose] = useState(false);
+  const [popup, setPopup] = useState(false);
   const toggleHandler = () => {
     setClose((prev) => !prev);
   };
@@ -80,7 +82,7 @@ const Item = ({ check_item }: { check_item: ItemProps[] }) => {
             return (
               <div
                 key={item.idx}
-                className="bg-primary_white  px-4 py-3  flex items-center justify-between border-l-8 border-transparent  shadow-lg rounded-md hover:scale-100"
+                className="bg-primary_white  px-4 py-3  flex items-center justify-between border-l-8 border-transparent  shadow-lg rounded-md hover:scale-100 cursor-pointer"
               >
                 <span className="text-lg font-medium min-w-[30px]">
                   {index + 1}
@@ -97,12 +99,16 @@ const Item = ({ check_item }: { check_item: ItemProps[] }) => {
                 <span className="text-lg min-w-[150px]">{item.create_dt}</span>
                 <span className="text-lg min-w-[150px]">{item.update_dt}</span>
                 <div className="flex items-center space-x-7 text-2xl min-w-[100px]">
-                  <MdOutlineModeEdit className="text-dark_blue hover:text-lightest_blue" />
+                  <MdOutlineModeEdit
+                    className="text-dark_blue hover:text-lightest_blue"
+                    onClick={() => setPopup((prev) => !prev)}
+                  />
                   <MdDeleteOutline
                     onClick={() => handleDelete(item.idx)}
                     className="text-dark_blue hover:text-red-500"
                   />
                 </div>
+                {/* {popup && <ItemPopup />} */}
               </div>
             );
           })}

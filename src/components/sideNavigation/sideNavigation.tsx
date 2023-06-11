@@ -62,13 +62,7 @@ const SideNavigation = () => {
           >
             <FcInspection className="text-2xl" />
           </SideNavigationLink>
-          <SideNavigationLink
-            navigation="content"
-            hovered={hovered}
-            name={`${hovered ? "Content" : ""}`}
-          >
-            <AiOutlineBulb className="text-2xl" />
-          </SideNavigationLink>
+
           <SideNavigationLink
             navigation="categories"
             hovered={hovered}
@@ -105,6 +99,13 @@ const SideNavigation = () => {
       <span className="line h-[2px] w-full bg-white/75 my-4 mt-auto"></span>
       <div className={``}>
         <ul className="list-none flex flex-col">
+          <SideNavigationLink
+            navigation="discover"
+            hovered={hovered}
+            name={`${hovered ? "Discover" : ""}`}
+          >
+            <AiOutlineBulb className="text-2xl" />
+          </SideNavigationLink>
           <SideNavigationLink
             navigation="help"
             hovered={hovered}

@@ -32,12 +32,12 @@ const Header = () => {
             </Link>
           </li>
           <li>
-            <div
+            <button
               className="hover:text-primary_white/50 transition-all duration-150 cursor-pointer"
               onClick={setIsUserExistFalse}
             >
               Sign Out
-            </div>
+            </button>
           </li>
         </ul>
         <div
@@ -52,7 +52,7 @@ const Header = () => {
             >
               <span className="font-bold">User:</span>
               <span className="text-red-500">
-                {username.length ? username : "No User"}
+                {username?.length ? username : "No User"}
               </span>
             </div>
           )}

@@ -58,7 +58,7 @@ const Item = ({ check_item }: { check_item: ItemProps[] }) => {
           </div>
           <div className=" bg-gray-100/40 px-4 py-1 flex items-center justify-between">
             <span className="text-lg font-medium min-w-[30px]">No</span>
-            <span className="text-lg font-medium min-w-[150px]">
+            <span className="text-lg font-medium min-w-[250px]">
               Detail Item
             </span>
             <span className="text-lg font-medium min-w-[150px]">
@@ -67,8 +67,8 @@ const Item = ({ check_item }: { check_item: ItemProps[] }) => {
             <span className="text-lg font-medium min-w-[150px]">
               Middle Category
             </span>
-            <span className="text-lg font-medium min-w-[150px]">Date</span>
-            <span className="text-lg font-medium min-w-[150px]">
+            <span className="text-lg font-medium min-w-[80px]">Date</span>
+            <span className="text-lg font-medium min-w-[80px]">
               Modified Date
             </span>
             <div className="flex items-center space-x-4 justify-center min-w-[100px]">
@@ -88,17 +88,15 @@ const Item = ({ check_item }: { check_item: ItemProps[] }) => {
                 <span className="text-lg font-medium min-w-[30px]">
                   {index + 1}
                 </span>
-                <span className="text-lg w-[150px]  truncate">
-                  {item.check_item}
-                </span>
-                <span className="text-lg w-[160px] truncate">
+                <span className="text-lg w-[250px] ">{item.check_item}</span>
+                <span className="text-lg w-[160px]">
                   {item.checkClass.check_class}
                 </span>
-                <span className="text-lg w-[150px] truncate">
+                <span className="text-lg w-[150px]">
                   {item.checkSubClass.check_sub_class}
                 </span>
-                <span className="text-lg min-w-[150px]">{item.create_dt}</span>
-                <span className="text-lg min-w-[150px]">{item.update_dt}</span>
+                <span className="text-lg min-w-[80px]">{item.create_dt}</span>
+                <span className="text-lg min-w-[80px]">{item.update_dt}</span>
                 <div className="flex items-center space-x-7 text-2xl min-w-[100px]">
                   <MdOutlineModeEdit
                     className="text-dark_blue hover:text-lightest_blue"

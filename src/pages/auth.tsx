@@ -108,6 +108,7 @@ export const FormInput = ({
         type={type}
         className="w-full bg-gray-300 rounded-md px-3 py-3 outline-light_blue"
         placeholder={placeholder}
+        autoComplete="current-password"
       />
       <ErrorMessage name={name}>
         {(msg) => <div style={{ color: "red" }}>{msg}</div>}

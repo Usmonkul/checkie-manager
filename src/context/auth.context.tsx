@@ -1,8 +1,8 @@
 import { create } from "zustand";
 
 interface User {
-  username: string;
-  password: string;
+  username?: string;
+  password?: string;
 }
 
 interface UserStore {
@@ -31,11 +31,10 @@ export const useUserStore = create<UserStore>((set) => ({
       },
     }),
   updateUser: (updatedUser) =>
-    set((state) => ({
-      ...state,
+    set({
       user: {
-        ...state.user,
-        ...updatedUser,
+        username: updatedUser.username,
+        password: updatedUser.password,
       },
-    })),
+    }),
 }));

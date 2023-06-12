@@ -13,16 +13,16 @@ const SideNavigationLink = ({
   navigation: string;
 }) => {
   return (
-    <li
+    <Link
+      href={`${navigation}`}
       className={`flex py-2 hover:bg-slate-400/75 hover:text-black transition-all ${
         hovered ? "pl-8" : ""
       }`}
     >
+      {" "}
       {children}
-      <Link href={`${navigation}`} className="ml-2 hover:text-black">
-        {name}
-      </Link>
-    </li>
+      <span className="ml-2">{name}</span>
+    </Link>
   );
 };
 

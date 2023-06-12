@@ -46,7 +46,7 @@ const SideNavigation = () => {
       </div>
       <span className="line h-[2px] w-full bg-white/75 my-4"></span>
       <div className={``}>
-        <ul className="list-none flex flex-col">
+        <div className="list-none flex flex-col">
           <SideNavigationLink
             navigation="target"
             hovered={hovered}
@@ -94,7 +94,7 @@ const SideNavigation = () => {
           >
             <RiDraftLine className="text-2xl" />
           </SideNavigationLink>
-        </ul>
+        </div>
       </div>
       <span className="line h-[2px] w-full bg-white/75 my-4 mt-auto"></span>
       <div className={``}>

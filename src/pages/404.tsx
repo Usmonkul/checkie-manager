@@ -1,6 +1,7 @@
-import Link from "next/link";
+import { useRouter } from "next/router";
 
 const NotFoundPage = () => {
+  const router = useRouter();
   return (
     <div className="flex items-center h-full w-screen absolute left-0 top-0 overflow-hidden p-16 dark:bg-gray-900 dark:text-gray-100">
       <div className="container flex flex-col items-center justify-center px-5 mx-auto my-8">
@@ -14,12 +15,13 @@ const NotFoundPage = () => {
           <p className="mt-4 mb-8 dark:text-gray-400">
             But dont worry, you can find plenty of other things on our homepage.
           </p>
-          <Link
-            href="/"
+          <button
+            type="button"
+            onClick={() => router.back()}
             className="px-8 py-3 font-semibold rounded dark:bg-light_blue dark:text-white hover:scale-105"
           >
             Back to homepage
-          </Link>
+          </button>
         </div>
       </div>
     </div>

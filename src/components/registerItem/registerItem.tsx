@@ -5,6 +5,7 @@ import { AiOutlineClose, AiOutlineArrowDown } from "react-icons/ai";
 import { useState } from "react";
 import ContentCom from "../contentCom/contentCom";
 import { v4 as uuid_v4 } from "uuid";
+import { FormInputLarge } from "../formFiels/formFields";
 const RegisterItem = ({
   close,
   toggleHandler,
@@ -14,11 +15,11 @@ const RegisterItem = ({
 }) => {
   return (
     <div
-      className={`fixed top-0 left-0 z-50 ${
-        !close ? "hidden" : "flex"
-      } items-center justify-center w-full h-full bg-gray-300/90 overflow-y-scroll`}
+      className={`fixed left-0  top-0 h-auto w-screen z-50 ${
+        !close ? "hidden" : "block"
+      } overflow-y-scroll bg-gray-300/90 py-10`}
     >
-      <div className="relative min-w-[700px] flex flex-col bg-white shadow-xl px-8 py-10 rounded-md space-y-3 mt-20">
+      <div className="relative left-1/2 -translate-x-1/2 w-[700px] h-auto flex flex-col bg-white shadow-xl px-8 py-5 rounded-md space-y-3">
         <AiOutlineClose
           onClick={toggleHandler}
           className="absolute top-4 right-4 text-xl hover:text-red-700 cursor-pointer"
@@ -53,6 +54,7 @@ const RegisterItem = ({
               update_dt: "",
             };
             const JSONdata = JSON.stringify(data);
+            alert(JSONdata);
             const endpoint =
               "http://idrenvision.iptime.org:8089/inspector/insert";
             const options = {
@@ -65,27 +67,16 @@ const RegisterItem = ({
             const response = await fetch(endpoint, options);
             const result = await response.json();
             setSubmitting(false);
-            resetForm({
-              values: {
-                itemName: "",
-                largeCategory: "",
-                middleCategory: "",
-                content: "",
-              },
-            });
+            resetForm();
           }}
         >
           <Form className="flex flex-col space-y-3">
-            <label className="text-lg font-semibold" htmlFor="itemName">
-              Item Name
-            </label>
-            <Field
-              className="rounded-md px-4 py-2 border-2 border-slate-350"
-              placeholder="Enter an item name..."
+            <FormInputLarge
               name="itemName"
+              placeholder="Enter an item name..."
               type="text"
+              label="Item Name"
             />
-            <ErrorMessage name="itemName" />
             {/*  */}
             <label className="text-lg font-semibold" htmlFor="">
               Select Large Category

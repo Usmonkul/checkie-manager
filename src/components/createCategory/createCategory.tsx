@@ -5,6 +5,7 @@ import { AiOutlineClose, AiOutlineArrowDown } from "react-icons/ai";
 import { CategoryData } from "@/pages/categories";
 import { v4 as uuid_v4 } from "uuid";
 import { CategoryProps } from "../../../types/types";
+import { FormInputLarge } from "../formFiels/formFields";
 
 const CreateCategory = ({
   close,
@@ -63,16 +64,12 @@ const CreateCategory = ({
           }}
         >
           <Form className="flex flex-col space-y-3">
-            <label className="text-lg font-semibold" htmlFor="categoryName">
-              Category Name
-            </label>
-            <Field
-              className="rounded-md px-4 py-2 border-2 border-slate-350"
-              placeholder="Enter a category name..."
+            <FormInputLarge
               name="categoryName"
+              placeholder="Enter a category name..."
               type="text"
+              label="Category Name"
             />
-            <ErrorMessage name="categoryName" />
             {/*  */}
             <label className="text-lg font-semibold" htmlFor="">
               Category Type
@@ -97,7 +94,9 @@ const CreateCategory = ({
                 <label htmlFor="categoryType">Middle Category</label>
               </div>
             </div>
-            <ErrorMessage name="categoryType" />
+            <ErrorMessage name="categoryType">
+              {(msg) => <div style={{ color: "red" }}>{msg}</div>}
+            </ErrorMessage>
             <div className="flex items-center justify-between pt-4 space-x-6">
               <button
                 className="bg-gray-300 py-2 px-8 rounded-md text-black font-semibold min-w-[190px]"

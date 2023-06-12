@@ -4,6 +4,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { AiOutlineClose } from "react-icons/ai";
 import { v4 as uuid_v4 } from "uuid";
+import { FormInputLarge } from "../formFiels/formFields";
 // import { dataBase } from "@/pages/inspectors";
 
 const CreateInspector = ({
@@ -40,7 +41,7 @@ const CreateInspector = ({
               .max(15, "Must be 15 characters or less")
               .required("Required"),
             inspector_tel: Yup.string()
-              .max(20, "Must be 20 characters or less")
+              .max(15, "Must be 20 characters or less")
               .required("Required"),
             inspector_email: Yup.string()
               .email("Invalid email address")
@@ -90,58 +91,33 @@ const CreateInspector = ({
           }}
         >
           <Form className="flex flex-col space-y-3">
-            <label className="text-lg font-semibold" htmlFor="inspector_name">
-              Inspector Name
-            </label>
-            <Field
-              className="rounded-md px-4 py-2 border-2 border-slate-350"
-              placeholder="Enter an inspector name..."
+            <FormInputLarge
               name="inspector_name"
+              placeholder="Enter an inspector name..."
               type="text"
+              label="Inspector Name"
             />
-            <ErrorMessage name="inspector_name">
-              {(msg) => <div style={{ color: "red" }}>{msg}</div>}
-            </ErrorMessage>
             {/*  */}
-            <label className="text-lg font-semibold" htmlFor="inspector_tel">
-              Inspector Number
-            </label>{" "}
-            <Field
-              className="rounded-md px-4 py-2 border-2 border-slate-350"
-              placeholder="Enter an inspector number..."
+            <FormInputLarge
               name="inspector_tel"
+              placeholder="Enter an inspector number..."
               type="text"
+              label="Target Number"
             />
-            <ErrorMessage name="inspector_tel">
-              {(msg) => <div style={{ color: "red" }}>{msg}</div>}
-            </ErrorMessage>
             {/*  */}
-            <label className="text-lg font-semibold" htmlFor="inspector_email">
-              Inspector Email
-            </label>
-            <Field
-              className="rounded-md px-4 py-2 border-2 border-slate-350"
-              placeholder="Enter an inspector email..."
+            <FormInputLarge
               name="inspector_email"
+              placeholder="Enter an inspector email..."
               type="email"
+              label="Target Email"
             />
-            <ErrorMessage name="inspector_email">
-              {(msg) => <div style={{ color: "red" }}>{msg}</div>}
-            </ErrorMessage>
             {/*  */}
-            <label
-              className="text-lg font-semibold"
-              htmlFor="inspector_description"
-            >
-              Description
-            </label>
-            <Field
-              className="rounded-md px-4 py-2 border-2 border-slate-350"
-              placeholder="Enter a description..."
+            <FormInputLarge
               name="inspector_description"
+              placeholder="Enter a description..."
               type="text"
+              label="Description"
             />
-            <ErrorMessage name="inspector_description" />
             {/*  */}
             <div className="flex items-center justify-between pt-4 space-x-6">
               <button

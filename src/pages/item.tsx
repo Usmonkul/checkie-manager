@@ -28,8 +28,8 @@ const Item = ({ check_item }: { check_item: ItemProps[] }) => {
       <Head>
         <title>Inspection Item</title>
       </Head>
+      <RegisterItem close={close} toggleHandler={toggleHandler} />
       <div className="flex flex-col py-5 px-5 space-y-4">
-        <RegisterItem close={close} toggleHandler={toggleHandler} />
         <div className="flex items-center justify-between ">
           <PrimaryHeader title="Inspection Item" />
           <div onClick={toggleHandler}>

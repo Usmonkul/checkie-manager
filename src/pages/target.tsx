@@ -25,8 +25,8 @@ const Target = ({ target }: { target: TargetProps[] }) => {
       <Head>
         <title>Inspection target</title>
       </Head>
+      <RegisterTarget close={close} toggleHandler={toggleHandler} />
       <div className="flex flex-col py-5 px-5 space-y-4">
-        <RegisterTarget close={close} toggleHandler={toggleHandler} />
         <div className="flex items-center justify-between ">
           <PrimaryHeader title="Inspection Target" />
           <div onClick={toggleHandler}>

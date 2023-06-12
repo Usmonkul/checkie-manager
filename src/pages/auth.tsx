@@ -1,7 +1,8 @@
 import Head from "next/head";
-import { Form, Formik, Field, ErrorMessage } from "formik";
+import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import { useUserStore } from "@/context/auth.context";
+import { FormInput } from "@/components/formFiels/formFields";
 const Auth = ({
   setUser,
 }: {
@@ -86,33 +87,3 @@ const Auth = ({
 };
 
 export default Auth;
-
-export const FormInput = ({
-  label,
-  name,
-  type,
-  placeholder,
-}: {
-  label: string;
-  name: string;
-  type: string;
-  placeholder: string;
-}) => {
-  return (
-    <div className="w-full mb-5">
-      <label className="text-lg font-medium block mb-2" htmlFor={name}>
-        {label}
-      </label>
-      <Field
-        name={name}
-        type={type}
-        className="w-full bg-gray-300 rounded-md px-3 py-3 outline-light_blue"
-        placeholder={placeholder}
-        autoComplete="current-password"
-      />
-      <ErrorMessage name={name}>
-        {(msg) => <div style={{ color: "red" }}>{msg}</div>}
-      </ErrorMessage>
-    </div>
-  );
-};

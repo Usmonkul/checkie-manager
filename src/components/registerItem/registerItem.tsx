@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import { AiOutlineClose, AiOutlineArrowDown } from "react-icons/ai";
 import { useState } from "react";
 import ContentCom from "../contentCom/contentCom";
+import { v4 as uuid_v4 } from "uuid";
 const RegisterItem = ({
   close,
   toggleHandler,
@@ -29,26 +30,49 @@ const RegisterItem = ({
           initialValues={{
             itemName: "",
             largeCategory: "",
-            MiddleCategory: "",
+            middleCategory: "",
+            content: "",
           }}
           validationSchema={Yup.object({
             itemName: Yup.string()
               .max(15, "Must be 15 characters or less")
               .required("Required"),
           })}
-          onSubmit={(values, { setSubmitting, resetForm }) => {
+          onSubmit={async (values, { setSubmitting, resetForm }) => {
+            const data = {
+              idx: parseInt(uuid_v4()),
+              inspector_name: values.itemName,
+              inspector_tel: values.largeCategory,
+              inspector_email: values.middleCategory,
+              inspector_description: values.content,
+              inspector_image: "https://placehold.co/600x400",
+              del_yn: "",
+              create_by: "admin",
+              create_dt: "",
+              update_by: "",
+              update_dt: "",
+            };
+            const JSONdata = JSON.stringify(data);
+            const endpoint =
+              "http://idrenvision.iptime.org:8089/inspector/insert";
+            const options = {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSONdata,
+            };
+            const response = await fetch(endpoint, options);
+            const result = await response.json();
             setSubmitting(false);
             resetForm({
               values: {
                 itemName: "",
                 largeCategory: "",
-                MiddleCategory: "",
+                middleCategory: "",
+                content: "",
               },
             });
-            // setTimeout(() => {
-            //   alert(JSON.stringify(values, null, 2));
-            //   setSubmitting(false);
-            // }, 400);
           }}
         >
           <Form className="flex flex-col space-y-3">

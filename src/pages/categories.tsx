@@ -6,11 +6,28 @@ import { CreateCategory, Filter } from "@/components";
 import { MdDeleteOutline, MdOutlineModeEdit } from "react-icons/md";
 import { useState } from "react";
 import { v4 as uuid_v4 } from "uuid";
-import { CategoryProps } from "../../types/types";
-const Categories = () => {
+import {
+  CategoryProps,
+  MCategoryProps,
+  LCategoryProps,
+} from "../../types/types";
+import { GetServerSideProps } from "next";
+import { API_REQUEST } from "@/services/api.service";
+import { array } from "yup";
+
+//Page
+const Categories = ({
+  categoryL,
+  categoryM,
+}: {
+  categoryL: LCategoryProps[];
+  categoryM: MCategoryProps[];
+}) => {
   const [close, setClose] = useState(false);
   const [categoryData, setCategoryData] = useState(CategoryData);
   const [selectedOption, setSelectedOption] = useState("");
+  const [datab, setDatab] = useState([...categoryL, ...categoryM]);
+
   const handleOptionChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedOption(event?.target.value);
   };
@@ -95,6 +112,32 @@ const Categories = () => {
         </div>
         {/* Target Items */}
         <div className="flex flex-col space-y-1">
+          {datab.map((item, index) => {
+            return (
+              <div
+                key={index}
+                className="bg-primary_white  px-4 py-3  flex items-center justify-between border-l-8 border-transparent  shadow-lg rounded-md"
+              >
+                <span className="text-lg font-medium min-w-[30px]">
+                  {index + 1}
+                </span>
+                <span className="text-lg min-w-[150px]">
+                  {item.check_class || item.check_sub_class}
+                </span>
+                <span className="text-lg min-w-[150px]">
+                  {item.check_class?.length ? "Large" : "Middle"}
+                </span>
+                <span className="text-lg min-w-[150px]">{item.create_dt}</span>
+                <div className="flex items-center space-x-7 text-2xl min-w-[100px]">
+                  <MdOutlineModeEdit className="text-dark_blue hover:text-lightest_blue" />
+                  <MdDeleteOutline
+                    // onClick={() => handleDelete(index)}
+                    className="text-dark_blue hover:text-red-500"
+                  />
+                </div>
+              </div>
+            );
+          })}
           {data.map((item, index) => {
             return (
               <div
@@ -129,6 +172,40 @@ const Categories = () => {
 
 export default Categories;
 
+interface CategoryPageProps {
+  categoryL: LCategoryProps[];
+  categoryM: MCategoryProps[];
+}
+export const getServerSideProps: GetServerSideProps<
+  CategoryPageProps
+> = async () => {
+  try {
+    const lResponse = await fetch(API_REQUEST.categoryL);
+    const mResponse = await fetch(API_REQUEST.categoryM);
+    if (!lResponse.ok) {
+      throw new Error("Failed to fetch inspection item data");
+    } else if (!mResponse.ok) {
+      throw new Error("Failed to fetch inspection item data");
+    }
+    const categoryL = await lResponse.json();
+    const categoryM = await mResponse.json();
+    return {
+      props: {
+        categoryL,
+        categoryM,
+      },
+    };
+  } catch (error) {
+    console.error("Failed to fecht inspection item data:", error);
+    return {
+      props: {
+        categoryL: [],
+        categoryM: [],
+      },
+    };
+  }
+};
+
 export const CategoryData = [
   {
     id: uuid_v4(),
@@ -155,3 +232,6 @@ export const CategoryData = [
     registeredDate: "2011.03.09",
   },
 ];
+function useEffect(arg0: () => void, arg1: (typeof array)[]) {
+  throw new Error("Function not implemented.");
+}

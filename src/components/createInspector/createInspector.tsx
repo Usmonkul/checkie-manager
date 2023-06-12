@@ -77,8 +77,6 @@ const CreateInspector = ({
             };
             const response = await fetch(endpoint, options);
             const result = await response.json();
-            console.log(result);
-            alert(`Your data: ${result.data}`);
             setSubmitting(false);
             resetForm({
               values: {

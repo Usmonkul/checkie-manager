@@ -79,15 +79,7 @@ const CreateInspector = ({
             const response = await fetch(endpoint, options);
             const result = await response.json();
             setSubmitting(false);
-            resetForm({
-              values: {
-                inspector_name: "",
-                inspector_tel: "",
-                inspector_email: "",
-                inspector_description: "",
-                inspector_image: "",
-              },
-            });
+            resetForm();
           }}
         >
           <Form className="flex flex-col space-y-3">

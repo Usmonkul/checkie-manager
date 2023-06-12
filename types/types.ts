@@ -69,6 +69,7 @@ export interface ContentProps {
 export interface LCategoryProps {
   idx: number;
   check_class: string;
+  check_sub_class?: string;
   del_yn: string;
   create_by: string;
   create_dt: string;
@@ -79,6 +80,7 @@ export interface LCategoryProps {
 export interface MCategoryProps {
   idx: number;
   check_sub_class: string;
+  check_class?: string;
   del_yn: string;
   create_by: string;
   create_dt: string;

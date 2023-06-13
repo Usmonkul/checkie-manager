@@ -1,8 +1,7 @@
 import { SecondaryHeader } from "@/utils/utils";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { AiOutlineClose, AiOutlineArrowDown } from "react-icons/ai";
-import { CategoryData } from "@/pages/categories";
+import { AiOutlineClose } from "react-icons/ai";
 import { v4 as uuid_v4 } from "uuid";
 import { CategoryProps } from "../../../types/types";
 import { FormInputLarge } from "../formFiels/formFields";

@@ -12,6 +12,7 @@ export interface InspectorProps {
   create_dt: string;
   update_by: string;
   update_dt: string;
+  validation: boolean;
 }
 
 export interface TargetProps {

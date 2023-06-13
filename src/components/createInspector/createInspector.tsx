@@ -59,11 +59,12 @@ const CreateInspector = ({
               inspector_email: values.inspector_email,
               inspector_description: values.inspector_description,
               inspector_image: "https://placehold.co/600x400",
-              del_yn: "",
+              del_yn: "N",
               create_by: "admin",
-              create_dt: "",
-              update_by: "",
-              update_dt: "",
+              create_dt: "2022-05-02",
+              update_by: "admin",
+              validation: true,
+              update_dt: "2022-05-02",
             };
             const JSONdata = JSON.stringify(data);
             console.log(JSONdata);

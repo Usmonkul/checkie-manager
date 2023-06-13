@@ -30,6 +30,7 @@ export const Select = ({
       >
         {info.map((item) => (
           <label
+            key={item.value}
             className="text-lg font-medium flex items-center justify-between border-b-2 p-2 cursor-pointer rounded hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-white"
             htmlFor="items"
           >

@@ -73,7 +73,12 @@ const Draft = () => {
         {/* card Items */}
         <div className="flex flex-col space-y-1">
           {filteredDraft.map((item, index) => (
-            <DraftItem item={item} index={index} handleDelete={handleDelete} />
+            <DraftItem
+              key={index}
+              item={item}
+              index={index}
+              handleDelete={handleDelete}
+            />
           ))}
         </div>
       </div>
@@ -94,10 +99,7 @@ export const DraftItem = ({
   handleDelete: (dataId: string) => void;
 }): JSX.Element => {
   return (
-    <div
-      key={item.id}
-      className="bg-primary_white  px-4 py-3  flex items-center justify-between border-l-8 border-transparent  shadow-lg rounded-md"
-    >
+    <div className="bg-primary_white  px-4 py-3  flex items-center justify-between border-l-8 border-transparent  shadow-lg rounded-md">
       <span className="text-lg font-medium w-[30px]">{index + 1}</span>
       <span className="text-lg w-[200px]">{item.title}</span>
       <span className="text-lg w-[200px]">{item.inspector}</span>

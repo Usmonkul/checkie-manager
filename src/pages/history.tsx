@@ -52,7 +52,7 @@ const History = () => {
         {/* card Items */}
         <div className="flex flex-col space-y-1">
           {filteredInspectors.map((item, index) => (
-            <HistoryItem item={item} index={index} />
+            <HistoryItem key={index} item={item} index={index} />
           ))}
         </div>
       </div>
@@ -72,10 +72,7 @@ export const HistoryItem = ({
   index: number;
 }) => {
   return (
-    <div
-      key={item.id}
-      className="bg-primary_white px-4 py-3 flex items-center justify-between border-l-8 border-transparent shadow-lg rounded-md"
-    >
+    <div className="bg-primary_white px-4 py-3 flex items-center justify-between border-l-8 border-transparent shadow-lg rounded-md">
       <span className="text-lg font-medium w-[30px]">{index + 1}</span>
       <span className="text-lg w-[250px]">{item.name}</span>
       <span className="text-lg w-[250px]">{item.inspector}</span>

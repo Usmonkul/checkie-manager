@@ -5,8 +5,16 @@ import { BiSearchAlt } from "react-icons/bi";
 import { v4 as uuid_v4 } from "uuid";
 import { MdDeleteOutline } from "react-icons/md";
 import { DraftDataProps } from "../../types/types";
+import { DraftExData } from "@/data/testData";
 const Draft = () => {
-  const [draftData, setDraftData] = useState(DraftData);
+  const [draftData, setDraftData] = useState(DraftExData);
+  const [draftSearch, setDraftSearch] = useState("");
+
+  //Search Function
+  const filteredDraft = draftData.filter((item) =>
+    item.title.toLowerCase().includes(draftSearch.toLowerCase())
+  );
+  //Delete function
   const handleDelete = (dataId: string) => {
     setDraftData((current: DraftDataProps[]) =>
       current.filter((card: DraftDataProps) => card.id != dataId)
@@ -24,7 +32,9 @@ const Draft = () => {
           <div className="bg-primary_white  px-4 py-2  flex items-center justify-between ">
             <h4 className="font-bold text-lg">
               Inspection Draft Query:{" "}
-              <span className="ml-3 text-light_blue">{DraftData.length}</span>
+              <span className="ml-3 text-light_blue">
+                {filteredDraft.length}
+              </span>
             </h4>
             <div className="flex items-center space-x-3">
               <input
@@ -32,6 +42,8 @@ const Draft = () => {
                 name="search"
                 id="search"
                 placeholder="Search.."
+                value={draftSearch}
+                onChange={(e) => setDraftSearch(e.target.value)}
                 className="flex items-center lg:w-[350px] rounded-md px-4 border outline-none text-black text-sm h-[33px] focus:outline focus:outline-green-300"
               />
               <div className="border border-transparent hover:border-light_blue hover:bg-gray-200/80 p-[3px] rounded-md">
@@ -40,27 +52,27 @@ const Draft = () => {
             </div>
           </div>
           <div className=" bg-gray-100/40 px-4 py-1 flex items-center justify-between">
-            <span className="text-lg font-medium min-w-[30px]">No</span>
-            <span className="text-lg font-medium min-w-[150px]">Title</span>
-            <span className="text-lg font-medium min-w-[150px]">Inspector</span>
-            <span className="text-lg font-medium min-w-[150px]">
+            <span className="text-lg font-medium w-[30px]">No</span>
+            <span className="text-lg font-medium w-[200px]">Title</span>
+            <span className="text-lg font-medium w-[200px]">Inspector</span>
+            <span className="text-lg font-medium w-[150px]">
               Inspection Date
             </span>
-            <span className="text-lg font-medium min-w-[150px]">
+            <span className="text-lg font-medium w-[150px]">
               Registered Date
             </span>
-            <span className="text-lg font-medium min-w-[150px]">Progress</span>
-            <span className="text-lg font-medium min-w-[150px]">
+            <span className="text-lg font-medium w-[100px]">Progress</span>
+            <span className="text-lg font-medium w-[140px]">
               Complation Date
             </span>
-            <div className="flex items-center space-x-4 justify-center min-w-[100px]">
+            <div className="flex items-center space-x-4 justify-center w-[100px]">
               <span className="text-lg font-medium">Delete</span>
             </div>
           </div>
         </div>
         {/* card Items */}
         <div className="flex flex-col space-y-1">
-          {draftData.map((item, index) => (
+          {filteredDraft.map((item, index) => (
             <DraftItem item={item} index={index} handleDelete={handleDelete} />
           ))}
         </div>
@@ -86,14 +98,14 @@ export const DraftItem = ({
       key={item.id}
       className="bg-primary_white  px-4 py-3  flex items-center justify-between border-l-8 border-transparent  shadow-lg rounded-md"
     >
-      <span className="text-lg font-medium min-w-[30px]">{index + 1}</span>
-      <span className="text-lg min-w-[150px]">{item.title}</span>
-      <span className="text-lg min-w-[150px]">{item.inspector}</span>
-      <span className="text-lg min-w-[150px]">{item.inspectionDate}</span>
-      <span className="text-lg min-w-[150px]">{item.registeredDate}</span>
-      <span className="text-lg min-w-[150px]">{item.progress}</span>
-      <span className="text-lg min-w-[150px]">{item.complationDate}</span>
-      <div className="flex items-center justify-center space-x-7 text-2xl min-w-[100px]">
+      <span className="text-lg font-medium w-[30px]">{index + 1}</span>
+      <span className="text-lg w-[200px]">{item.title}</span>
+      <span className="text-lg w-[200px]">{item.inspector}</span>
+      <span className="text-lg w-[150px]">{item.inspectionDate}</span>
+      <span className="text-lg w-[150px]">{item.registeredDate}</span>
+      <span className="text-lg w-[100px]">{item.progress}</span>
+      <span className="text-lg w-[140px]">{item.complationDate}</span>
+      <div className="flex items-center justify-center space-x-7 text-2xl w-[100px]">
         <MdDeleteOutline
           onClick={() => handleDelete(item.id)}
           className="text-dark_blue hover:text-red-500"
@@ -102,42 +114,3 @@ export const DraftItem = ({
     </div>
   );
 };
-
-export const DraftData = [
-  {
-    id: uuid_v4(),
-    title: "Fire Inspection Zone",
-    inspector: "Donalt J Trump",
-    inspectionDate: "2011.03.09",
-    registeredDate: "2010.04.03",
-    progress: "Success",
-    complationDate: "2010.04.03",
-  },
-  {
-    id: uuid_v4(),
-    title: "Fire Inspection Zone",
-    inspector: "Donalt J Trump",
-    inspectionDate: "2011.03.09",
-    registeredDate: "2010.04.03",
-    progress: "Success",
-    complationDate: "2010.04.03",
-  },
-  {
-    id: uuid_v4(),
-    title: "Fire Inspection Zone",
-    inspector: "Donalt J Trump",
-    inspectionDate: "2011.03.09",
-    registeredDate: "2010.04.03",
-    progress: "Success",
-    complationDate: "2010.04.03",
-  },
-  {
-    id: uuid_v4(),
-    title: "Fire Inspection Zone",
-    inspector: "Donalt J Trump",
-    inspectionDate: "2011.03.09",
-    registeredDate: "2010.04.03",
-    progress: "Success",
-    complationDate: "2010.04.03",
-  },
-];

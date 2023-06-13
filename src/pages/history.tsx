@@ -1,8 +1,16 @@
 import Head from "next/head";
+import { useState } from "react";
 import { PrimaryHeader } from "@/utils/utils";
 import { BiSearchAlt } from "react-icons/bi";
-import { v4 as uuid_v4 } from "uuid";
+import { HistoryExData } from "@/data/testData";
 const History = () => {
+  const [historyData, setHistoryData] = useState(HistoryExData);
+  const [historySearch, setHistorySearch] = useState("");
+
+  //Search Function
+  const filteredInspectors = historyData.filter((item) =>
+    item.name.toLowerCase().includes(historySearch.toLowerCase())
+  );
   return (
     <div className="text-black">
       <Head>
@@ -15,7 +23,9 @@ const History = () => {
           <div className="bg-primary_white  px-4 py-2  flex items-center justify-between ">
             <h4 className="font-bold text-lg">
               Inspection History:{" "}
-              <span className="ml-3 text-light_blue">{HistoryData.length}</span>
+              <span className="ml-3 text-light_blue">
+                {filteredInspectors.length}
+              </span>
             </h4>
             <div className="flex items-center space-x-3">
               <input
@@ -23,6 +33,8 @@ const History = () => {
                 name="search"
                 id="search"
                 placeholder="Search.."
+                value={historySearch}
+                onChange={(e) => setHistorySearch(e.target.value)}
                 className="flex items-center lg:w-[350px] rounded-md px-4 border outline-none text-black text-sm h-[33px] focus:outline focus:outline-green-300"
               />
               <div className="border border-transparent hover:border-light_blue hover:bg-gray-200/80 p-[3px] rounded-md">
@@ -31,15 +43,15 @@ const History = () => {
             </div>
           </div>
           <div className=" bg-gray-100/40 px-4 py-1 flex items-center justify-between">
-            <span className="text-lg font-medium min-w-[30px]">No</span>
-            <span className="text-lg font-medium min-w-[150px]">Target</span>
-            <span className="text-lg font-medium min-w-[150px]">Inspector</span>
-            <span className="text-lg font-medium min-w-[150px]">Date</span>
+            <span className="text-lg font-medium w-[30px]">No</span>
+            <span className="text-lg font-medium w-[250px]">Target</span>
+            <span className="text-lg font-medium w-[250px]">Inspector</span>
+            <span className="text-lg font-medium w-[200px]">Date</span>
           </div>
         </div>
         {/* card Items */}
         <div className="flex flex-col space-y-1">
-          {HistoryData.map((item, index) => (
+          {filteredInspectors.map((item, index) => (
             <HistoryItem item={item} index={index} />
           ))}
         </div>
@@ -50,6 +62,8 @@ const History = () => {
 };
 
 export default History;
+
+//Item
 export const HistoryItem = ({
   item,
   index = 1,
@@ -62,55 +76,10 @@ export const HistoryItem = ({
       key={item.id}
       className="bg-primary_white px-4 py-3 flex items-center justify-between border-l-8 border-transparent shadow-lg rounded-md"
     >
-      <span className="text-lg font-medium min-w-[30px]">{index + 1}</span>
-      <span className="text-lg min-w-[150px]">{item.name}</span>
-      <span className="text-lg min-w-[150px]">{item.inspector}</span>
-      <span className="text-lg min-w-[150px]">{item.date}</span>
+      <span className="text-lg font-medium w-[30px]">{index + 1}</span>
+      <span className="text-lg w-[250px]">{item.name}</span>
+      <span className="text-lg w-[250px]">{item.inspector}</span>
+      <span className="text-lg w-[200px]">{item.date}</span>
     </div>
   );
 };
-
-export const HistoryData = [
-  {
-    id: uuid_v4(),
-    name: "Fire Inspection Zone",
-    inspector: "Donalt J Trump",
-    date: "2011.03.09",
-  },
-  {
-    id: uuid_v4(),
-    name: "Fire Inspection Zone",
-    inspector: "Donalt J Trump",
-    date: "2011.03.09",
-  },
-  {
-    id: uuid_v4(),
-    name: "Fire Inspection Zone",
-    inspector: "Donalt J Trump",
-    date: "2011.03.09",
-  },
-  {
-    id: uuid_v4(),
-    name: "Fire Inspection Zone",
-    inspector: "Donalt J Trump",
-    date: "2011.03.09",
-  },
-  {
-    id: uuid_v4(),
-    name: "Fire Inspection Zone",
-    inspector: "Donalt J Trump",
-    date: "2011.03.09",
-  },
-  {
-    id: uuid_v4(),
-    name: "Fire Inspection Zone",
-    inspector: "Donalt J Trump",
-    date: "2011.03.09",
-  },
-  {
-    id: uuid_v4(),
-    name: "Fire Inspection Zone",
-    inspector: "Donalt J Trump",
-    date: "2011.03.09",
-  },
-];

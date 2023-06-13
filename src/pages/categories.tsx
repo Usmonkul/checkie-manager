@@ -5,7 +5,7 @@ import { BiSearchAlt } from "react-icons/bi";
 import { CreateCategory, Filter } from "@/components";
 import { MdDeleteOutline, MdOutlineModeEdit } from "react-icons/md";
 import { useState } from "react";
-import { v4 as uuid_v4 } from "uuid";
+import { CategoryExData } from "@/data/testData";
 import {
   CategoryProps,
   MCategoryProps,
@@ -13,7 +13,6 @@ import {
 } from "../../types/types";
 import { GetServerSideProps } from "next";
 import { API_REQUEST } from "@/services/api.service";
-import { array } from "yup";
 
 //Page
 const Categories = ({
@@ -24,7 +23,7 @@ const Categories = ({
   categoryM: MCategoryProps[];
 }) => {
   const [close, setClose] = useState(false);
-  const [categoryData, setCategoryData] = useState(CategoryData);
+  const [categoryData, setCategoryData] = useState(CategoryExData);
   const [selectedOption, setSelectedOption] = useState("");
   const [datab, setDatab] = useState([...categoryL, ...categoryM]);
 
@@ -77,7 +76,7 @@ const Categories = ({
             <h4 className="font-bold text-lg">
               Category List No:{" "}
               <span className="ml-3 text-light_blue">
-                {CategoryData.length}
+                {CategoryExData.length}
               </span>
             </h4>
             <div className="flex items-center space-x-3">
@@ -94,17 +93,13 @@ const Categories = ({
             </div>
           </div>
           <div className=" bg-gray-100/40 px-4 py-1 flex items-center justify-between">
-            <span className="text-lg font-medium min-w-[30px]">ID</span>
-            <span className="text-lg font-medium min-w-[150px]">
-              Category name
-            </span>
-            <span className="text-lg font-medium min-w-[150px]">
-              Category Type
-            </span>
-            <span className="text-lg font-medium min-w-[150px]">
+            <span className="text-lg font-medium w-[30px]">ID</span>
+            <span className="text-lg font-medium w-[250px]">Category name</span>
+            <span className="text-lg font-medium w-[200px]">Category Type</span>
+            <span className="text-lg font-medium w-[150px]">
               Registered Date
             </span>
-            <div className="flex items-center space-x-4 justify-center min-w-[100px]">
+            <div className="flex items-center space-x-4 justify-center w-[100px]">
               <span className="text-lg font-medium">Edit</span>
               <span className="text-lg font-medium">Delete</span>
             </div>
@@ -118,17 +113,17 @@ const Categories = ({
                 key={index}
                 className="bg-primary_white  px-4 py-3  flex items-center justify-between border-l-8 border-transparent  shadow-lg rounded-md"
               >
-                <span className="text-lg font-medium min-w-[30px]">
+                <span className="text-lg font-medium w-[30px]">
                   {index + 1}
                 </span>
-                <span className="text-lg min-w-[150px]">
+                <span className="text-lg w-[250px]">
                   {item.check_class || item.check_sub_class}
                 </span>
-                <span className="text-lg min-w-[150px]">
+                <span className="text-lg w-[200px]">
                   {item.check_class?.length ? "Large" : "Middle"}
                 </span>
-                <span className="text-lg min-w-[150px]">{item.create_dt}</span>
-                <div className="flex items-center space-x-7 text-2xl min-w-[100px]">
+                <span className="text-lg w-[150px]">{item.create_dt}</span>
+                <div className="flex items-center space-x-7 text-2xl w-[100px]">
                   <MdOutlineModeEdit className="text-dark_blue hover:text-lightest_blue" />
                   <MdDeleteOutline
                     // onClick={() => handleDelete(index)}
@@ -144,17 +139,15 @@ const Categories = ({
                 key={item.id}
                 className="bg-primary_white  px-4 py-3  flex items-center justify-between border-l-8 border-transparent  shadow-lg rounded-md"
               >
-                <span className="text-lg font-medium min-w-[30px]">
+                <span className="text-lg font-medium w-[30px]">
                   {index + 1}
                 </span>
-                <span className="text-lg min-w-[150px]">{item.name}</span>
-                <span className="text-lg min-w-[150px]">
+                <span className="text-lg w-[250px]">{item.name}</span>
+                <span className="text-lg w-[200px]">
                   {item.category === "large" ? "Large" : "Middle"}
                 </span>
-                <span className="text-lg min-w-[150px]">
-                  {item.registeredDate}
-                </span>
-                <div className="flex items-center space-x-7 text-2xl min-w-[100px]">
+                <span className="text-lg w-[150px]">{item.registeredDate}</span>
+                <div className="flex items-center space-x-7 text-2xl w-[100px]">
                   <MdOutlineModeEdit className="text-dark_blue hover:text-lightest_blue" />
                   <MdDeleteOutline
                     onClick={() => handleDelete(item.id)}
@@ -205,33 +198,3 @@ export const getServerSideProps: GetServerSideProps<
     };
   }
 };
-
-export const CategoryData = [
-  {
-    id: uuid_v4(),
-    name: "Category1",
-    category: "large",
-    registeredDate: "2011.03.09",
-  },
-  {
-    id: uuid_v4(),
-    name: "Category2",
-    category: "middle",
-    registeredDate: "2011.03.09",
-  },
-  {
-    id: uuid_v4(),
-    name: "Category3",
-    category: "large",
-    registeredDate: "2011.03.09",
-  },
-  {
-    id: uuid_v4(),
-    name: "Category4",
-    category: "middle",
-    registeredDate: "2011.03.09",
-  },
-];
-function useEffect(arg0: () => void, arg1: (typeof array)[]) {
-  throw new Error("Function not implemented.");
-}

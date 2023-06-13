@@ -5,21 +5,29 @@ import { MdDeleteOutline, MdOutlineModeEdit } from "react-icons/md";
 import { useState } from "react";
 import { RegisterTarget, Filter } from "@/components";
 // import { TargetDataProps } from "../../types/types";
-// import { v4 as uuid_v4 } from "uuid";
 import { API_REQUEST } from "@/services/api.service";
 import { TargetProps } from "../../types/types";
 import { GetServerSideProps } from "next";
+import { TargetExData } from "@/data/testData";
+//Component
 const Target = ({ target }: { target: TargetProps[] }) => {
   const [close, setClose] = useState(false);
+  const [targetSearch, setTargetSearch] = useState("");
+  const [targetData, setTargetData] = useState(target);
+  //Toggler
   const toggleHandler = () => {
     setClose((prev) => !prev);
   };
-  const [targetData, setTargetData] = useState(target);
+  //Delete
   const handleDelete = (dataId: number) => {
     setTargetData((current: TargetProps[]) =>
       current.filter((card: TargetProps) => card.idx !== dataId)
     );
   };
+  //Search function
+  const filteredTarget = targetData.filter((item) =>
+    item.check_group.toLowerCase().includes(targetSearch.toLowerCase())
+  );
   return (
     <div className="text-black">
       <Head>
@@ -38,7 +46,9 @@ const Target = ({ target }: { target: TargetProps[] }) => {
           <div className="bg-primary_white  px-4 py-2  flex items-center justify-between ">
             <h4 className="font-medium text-lg">
               Target List:{" "}
-              <span className="ml-3 text-light_blue">{target.length}</span>
+              <span className="ml-3 text-light_blue">
+                {filteredTarget.length}
+              </span>
             </h4>
             <div className="flex items-center space-x-3">
               <input
@@ -46,6 +56,8 @@ const Target = ({ target }: { target: TargetProps[] }) => {
                 name="search"
                 id="search"
                 placeholder="Search inspection target.."
+                value={targetSearch}
+                onChange={(e) => setTargetSearch(e.target.value)}
                 className="flex items-center lg:w-[350px] rounded-md px-4 border outline-none text-black text-sm h-[33px] focus:outline focus:outline-green-300"
               />
               <div className="border border-transparent hover:border-light_blue hover:bg-gray-200/80 p-[3px] rounded-md">
@@ -70,7 +82,7 @@ const Target = ({ target }: { target: TargetProps[] }) => {
         </div>
         {/* Target Items */}
         <div className="flex flex-col space-y-1">
-          {targetData.map((item, index) => {
+          {filteredTarget.map((item, index) => {
             return (
               <div
                 key={item.idx}
@@ -128,31 +140,3 @@ export const getServerSideProps: GetServerSideProps<
     };
   }
 };
-
-// Data for exerperiment
-// export const TargetData = [
-//   {
-//     id: uuid_v4(),
-//     facility: "Fite Station",
-//     create_dt: "2011.03.09",
-//     update_dt: "2011.03.10",
-//   },
-//   {
-//     id: uuid_v4(),
-//     facility: "Office",
-//     create_dt: "2011.03.09",
-//     update_dt: "2011.03.10",
-//   },
-//   {
-//     id: uuid_v4(),
-//     facility: "Plane Pruduction",
-//     create_dt: "2011.03.09",
-//     update_dt: "2011.03.10",
-//   },
-//   {
-//     id: uuid_v4(),
-//     facility: "Fite Station",
-//     create_dt: "2011.03.09",
-//     update_dt: "2011.03.10",
-//   },
-// ];

@@ -1,4 +1,3 @@
-import React from "react";
 import Head from "next/head";
 import { ButtonPrimary, PrimaryHeader } from "@/utils/utils";
 import { BiSearchAlt } from "react-icons/bi";
@@ -6,23 +5,28 @@ import { Filter } from "@/components";
 import { MdDeleteOutline, MdOutlineModeEdit } from "react-icons/md";
 import { useState } from "react";
 import { RegisterItem } from "@/components";
-// import { v4 as uuid_v4 } from "uuid";
 import { ItemDataProps, ItemProps } from "../../types/types";
-import ItemPopup from "@/components/registerItem/itemPopup";
 import { API_REQUEST } from "@/services/api.service";
 import { GetServerSideProps } from "next";
+import { ItemExData } from "@/data/testData";
+//Component
 const Item = ({ check_item }: { check_item: ItemProps[] }) => {
+  const [itemSearch, setItemSearch] = useState("");
+  const [itemData, setItemData] = useState(check_item);
   const [close, setClose] = useState(false);
   const [popup, setPopup] = useState(false);
   const toggleHandler = () => {
     setClose((prev) => !prev);
   };
-  const [itemData, setItemData] = useState(check_item);
+  ///Delete function
   const handleDelete = (dataId: number) => {
     setItemData((current: ItemProps[]) =>
       current.filter((card: ItemProps) => card.idx != dataId)
     );
   };
+  const filteredItems = itemData.filter((item) =>
+    item.check_item.toLowerCase().includes(itemSearch.toLowerCase())
+  );
   return (
     <div className="text-black">
       <Head>
@@ -41,7 +45,9 @@ const Item = ({ check_item }: { check_item: ItemProps[] }) => {
           <div className="bg-primary_white  px-4 py-2  flex items-center justify-between ">
             <h4 className="font-medium text-lg">
               Inspection items:{" "}
-              <span className="ml-3 text-light_blue">{check_item.length}</span>
+              <span className="ml-3 text-light_blue">
+                {filteredItems.length}
+              </span>
             </h4>
             <div className="flex items-center space-x-3">
               <input
@@ -49,6 +55,8 @@ const Item = ({ check_item }: { check_item: ItemProps[] }) => {
                 name="search"
                 id="search"
                 placeholder="Search inspection target.."
+                value={itemSearch}
+                onChange={(e) => setItemSearch(e.target.value)}
                 className="flex items-center lg:w-[350px] rounded-md px-4 border outline-none text-black text-sm h-[33px] focus:outline focus:outline-green-300"
               />
               <div className="border border-transparent hover:border-light_blue hover:bg-gray-200/80 p-[3px] rounded-md">
@@ -79,7 +87,7 @@ const Item = ({ check_item }: { check_item: ItemProps[] }) => {
         </div>
         {/* Target Items */}
         <div className="flex flex-col space-y-1">
-          {itemData.map((item, index) => {
+          {filteredItems.map((item, index) => {
             return (
               <div
                 key={item.idx}
@@ -145,22 +153,3 @@ export const getServerSideProps: GetServerSideProps<
     };
   }
 };
-// //Data for experiment
-// export const ItemData = [
-//   {
-//     id: uuid_v4(),
-//     check_item: "Power Pressure check",
-//     checkClass: "large",
-//     checkSubClass: "Basic",
-//     create_dt: "2011.03.09",
-//     update_dt: "2011.03.10",
-//   },
-//   {
-//     id: uuid_v4(),
-//     check_item: "Power Pressure check",
-//     checkClass: "large",
-//     checkSubClass: "Basic",
-//     create_dt: "2011.03.09",
-//     update_dt: "2011.03.10",
-//   },
-// ];

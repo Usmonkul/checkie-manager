@@ -3,75 +3,21 @@ import Head from "next/head";
 import { PrimaryHeader, ButtonPrimary } from "@/utils/utils";
 import { BiSearchAlt } from "react-icons/bi";
 import InspectorCard from "@/components/inspectorCard/inspectorCard";
-import { v4 as uuid_v4 } from "uuid";
 import { CreateInspector } from "@/components";
 import { API_REQUEST } from "@/services/api.service";
 import { InspectorProps, InspectorsProps } from "../../types/types";
 import { GetServerSideProps } from "next";
-export const dataBase = [
-  {
-    id: uuid_v4(),
-    name: "Donalt Trump",
-    job: "Inspector in Tech Lab",
-    email: "trump@gmail.com",
-    phone: "0107777777",
-    description: "10 years of experience in his field",
-    image: "https://placehold.co/600x400",
-  },
-  {
-    id: uuid_v4(),
-    name: "Donalt Trump",
-    job: "Inspector in Tech Lab",
-    email: "trump@gmail.com",
-    phone: "0107777777",
-    description: "10 years of experience in his field",
-    image: "https://placehold.co/600x400",
-  },
-  {
-    id: uuid_v4(),
-    name: "Donalt Trump",
-    job: "Inspector in Tech Lab",
-    email: "trump@gmail.com",
-    phone: "0107777777",
-    description: "10 years of experience in his field",
-    image: "https://placehold.co/600x400",
-  },
-  {
-    id: uuid_v4(),
-    name: "Donalt Trump",
-    job: "Inspector in Tech Lab",
-    email: "trump@gmail.com",
-    phone: "0107777777",
-    description: "10 years of experience in his field",
-    image: "https://placehold.co/600x400",
-  },
-  {
-    id: uuid_v4(),
-    name: "Donalt Trump",
-    job: "Inspector in Tech Lab",
-    email: "trump@gmail.com",
-    phone: "0107777777",
-    description: "10 years of experience in his field",
-    image: "https://placehold.co/600x400",
-  },
-  {
-    id: uuid_v4(),
-    name: "Donalt Trump",
-    job: "Inspector in Tech Lab",
-    email: "trump@gmail.com",
-    phone: "0107777777",
-    description: "10 years of experience in his field",
-    image: "https://placehold.co/600x400",
-  },
-];
-
+import { InspectorExData } from "@/data/testData";
+//Component
 const Inspectors = ({ inspector }: { inspector: InspectorProps[] }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [inspectorData, setinspectorData] = useState(inspector);
   const [close, setClose] = useState(false);
+  //Toggler
   const toggleHandler = () => {
     setClose((prev) => !prev);
   };
+  //Search Function
   const filteredInspectors = inspectorData.filter((item) =>
     item.inspector_name.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -90,7 +36,9 @@ const Inspectors = ({ inspector }: { inspector: InspectorProps[] }) => {
         <div className="bg-primary_white shadow-lg px-4 py-3 rounded-md flex items-center justify-between  border-l-8 border-dark_blue">
           <h4 className="font-medium">
             Inspectors No:{" "}
-            <span className="ml-3 text-light_blue">{inspector.length}</span>
+            <span className="ml-3 text-light_blue">
+              {filteredInspectors.length}
+            </span>
           </h4>
           <div className="flex items-center space-x-3">
             <input

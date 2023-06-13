@@ -37,18 +37,18 @@ const RegisterTarget = ({
           </div>
           <Formik
             initialValues={{
-              tagName: "",
-              tagId: "",
+              check_group: "",
+              tag_id: null,
               items: [],
               schedule: "",
               inspectors: [],
               image: "",
             }}
             validationSchema={Yup.object({
-              tagName: Yup.string()
+              check_group: Yup.string()
                 .max(15, "Must be 15 characters or less")
                 .required("Required"),
-              tagId: Yup.string()
+              tag_id: Yup.string()
                 .max(20, "Must be 20 characters or less")
                 .required("Required"),
             })}
@@ -62,16 +62,16 @@ const RegisterTarget = ({
           >
             <Form className="flex flex-col space-y-3">
               <FormInputLarge
-                name="tagName"
+                name="check_group"
                 placeholder="Enter a target name..."
                 type="text"
                 label="Target Name"
               />
               {/*  */}
               <FormInputLarge
-                name="tagId"
+                name="tag_id"
                 placeholder="Enter a tag ID..."
-                type="text"
+                type="number"
                 label="Tag ID"
               />
               {/*  */}

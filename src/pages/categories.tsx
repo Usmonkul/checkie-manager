@@ -26,18 +26,40 @@ const Categories = ({
   const [categoryData, setCategoryData] = useState(CategoryExData);
   const [selectedOption, setSelectedOption] = useState("");
   const [datab, setDatab] = useState([...categoryL, ...categoryM]);
-
+  const [categoryQuery, setCategoryQuery] = useState("");
+  // Filter function
   const handleOptionChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedOption(event?.target.value);
   };
+  //toggler
   const toggleHandler = () => {
     setClose((prev) => !prev);
   };
+  //Delete function
   const handleDelete = (dataId: string) => {
     setCategoryData((current: CategoryProps[]) =>
       current.filter((card: CategoryProps) => card.id != dataId)
     );
   };
+
+  //Search function
+  const filteredCategory = datab.filter((item) => {
+    if (categoryQuery.length) {
+      return (
+        item.check_class?.toLowerCase().includes(categoryQuery.toLowerCase()) ||
+        item?.check_sub_class
+          ?.toLowerCase()
+          .includes(categoryQuery.toLowerCase())
+      );
+    } else if (selectedOption === "large") {
+      return item?.check_class?.length ?? 0 > 0;
+    } else if (selectedOption === "middle") {
+      return item?.check_sub_class?.length ?? 0 > 0;
+    } else {
+      return true;
+    }
+  });
+
   let data;
 
   if (selectedOption === "large") {
@@ -76,7 +98,7 @@ const Categories = ({
             <h4 className="font-bold text-lg">
               Category List No:{" "}
               <span className="ml-3 text-light_blue">
-                {CategoryExData.length}
+                {filteredCategory.length}
               </span>
             </h4>
             <div className="flex items-center space-x-3">
@@ -84,6 +106,8 @@ const Categories = ({
                 type="search"
                 name="search"
                 id="search"
+                value={categoryQuery}
+                onChange={(e) => setCategoryQuery(e.target.value)}
                 placeholder="Search category.."
                 className="flex items-center lg:w-[350px] rounded-md px-4 border outline-none text-black text-sm h-[33px] focus:outline focus:outline-green-300"
               />
@@ -107,7 +131,7 @@ const Categories = ({
         </div>
         {/* Target Items */}
         <div className="flex flex-col space-y-1">
-          {datab.map((item, index) => {
+          {filteredCategory.map((item, index) => {
             return (
               <div
                 key={index}

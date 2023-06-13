@@ -66,11 +66,15 @@ export const dataBase = [
 ];
 
 const Inspectors = ({ inspector }: { inspector: InspectorProps[] }) => {
+  const [searchQuery, setSearchQuery] = useState("");
   const [inspectorData, setinspectorData] = useState(inspector);
   const [close, setClose] = useState(false);
   const toggleHandler = () => {
     setClose((prev) => !prev);
   };
+  const filteredInspectors = inspectorData.filter((item) =>
+    item.inspector_name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
   return (
     <div className="text-black">
       <Head>
@@ -94,6 +98,8 @@ const Inspectors = ({ inspector }: { inspector: InspectorProps[] }) => {
               name="search"
               id="search"
               placeholder="Search an inspector.."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
               className="flex items-center lg:w-[350px] rounded-md px-4 border outline-none text-black text-sm h-[33px] focus:outline focus:outline-green-300"
             />
             <div className="border border-transparent hover:border-light_blue hover:bg-gray-200/80 p-[3px] rounded-md">
@@ -103,7 +109,7 @@ const Inspectors = ({ inspector }: { inspector: InspectorProps[] }) => {
         </div>
         <CreateInspector close={close} toggleHandler={toggleHandler} />
         <ul className="list-none flex flex-wrap gap-3 justify-start">
-          {inspectorData.map((item: InspectorProps) => {
+          {filteredInspectors.map((item: InspectorProps) => {
             return (
               <InspectorCard
                 key={item.idx}

@@ -21,7 +21,7 @@ const CreateCategory = ({
     <div
       className={`fixed top-0 left-0 z-50 ${
         !close ? "hidden" : "flex"
-      } items-center justify-center w-full h-full bg-gray-300/90 overflow-hidden`}
+      } items-center justify-center w-full h-screen bg-gray-300/90 overflow-hidden`}
     >
       <div className="relative min-w-[700px] flex flex-col bg-white shadow-xl px-8 py-5 rounded-md space-y-3 ">
         <AiOutlineClose

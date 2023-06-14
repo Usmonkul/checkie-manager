@@ -23,7 +23,7 @@ const RegisterTarget = ({
   return (
     <>
       <div
-        className={`absolute left-0  top-0 h-auto w-screen z-50 ${
+        className={`absolute left-0  top-0 h-screen w-screen z-50 ${
           !close ? "hidden" : "block"
         } overflow-y-scroll bg-gray-300/90 py-16`}
       >

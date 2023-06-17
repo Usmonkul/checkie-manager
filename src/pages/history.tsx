@@ -44,7 +44,7 @@ const History = () => {
           </div>
           <div className=" bg-gray-100/40 px-4 py-1 flex items-center justify-between">
             <span className="text-lg font-medium w-[30px]">No</span>
-            <span className="text-lg font-medium w-[250px]">Target</span>
+            <span className="text-lg font-medium w-[300px]">Target</span>
             <span className="text-lg font-medium w-[250px]">Inspector</span>
             <span className="text-lg font-medium w-[200px]">Date</span>
           </div>
@@ -74,7 +74,7 @@ export const HistoryItem = ({
   return (
     <div className="bg-primary_white px-4 py-3 flex items-center justify-between border-l-8 border-transparent shadow-lg rounded-md">
       <span className="text-lg font-medium w-[30px]">{index + 1}</span>
-      <span className="text-lg w-[250px]">{item.name}</span>
+      <span className="text-lg w-[300px]">{item.name}</span>
       <span className="text-lg w-[250px]">{item.inspector}</span>
       <span className="text-lg w-[200px]">{item.date}</span>
     </div>

@@ -5,14 +5,14 @@ import { Filter } from "@/components";
 import { MdDeleteOutline, MdOutlineModeEdit } from "react-icons/md";
 import { useState } from "react";
 import { RegisterItem } from "@/components";
-import { ItemDataProps, ItemProps } from "../../types/types";
+import { ItemProps } from "../../types/types";
 import { API_REQUEST } from "@/services/api.service";
 import { GetServerSideProps } from "next";
 import { ItemExData } from "@/data/testData";
 //Component
-const Item = ({ check_item }: { check_item: ItemProps[] }) => {
+const Item = () => {
   const [itemSearch, setItemSearch] = useState("");
-  const [itemData, setItemData] = useState(check_item);
+  const [itemData, setItemData] = useState(ItemExData);
   const [close, setClose] = useState(false);
   const [popup, setPopup] = useState(false);
   const toggleHandler = () => {
@@ -66,9 +66,7 @@ const Item = ({ check_item }: { check_item: ItemProps[] }) => {
           </div>
           <div className=" bg-gray-100/40 px-4 py-1 flex items-center justify-between">
             <span className="text-lg font-medium min-w-[30px]">No</span>
-            <span className="text-lg font-medium min-w-[250px]">
-              Detail Item
-            </span>
+            <span className="text-lg font-medium min-w-[250px]">Item name</span>
             <span className="text-lg font-medium min-w-[150px]">
               Large Category
             </span>
@@ -76,9 +74,6 @@ const Item = ({ check_item }: { check_item: ItemProps[] }) => {
               Middle Category
             </span>
             <span className="text-lg font-medium min-w-[80px]">Date</span>
-            <span className="text-lg font-medium min-w-[80px]">
-              Modified Date
-            </span>
             <div className="flex items-center space-x-4 justify-center min-w-[100px]">
               <span className="text-lg font-medium">Edit</span>
               <span className="text-lg font-medium">Delete</span>
@@ -98,13 +93,13 @@ const Item = ({ check_item }: { check_item: ItemProps[] }) => {
                 </span>
                 <span className="text-lg w-[250px] ">{item.check_item}</span>
                 <span className="text-lg w-[160px]">
-                  {item.checkClass.check_class}
+                  {item.check_class.check_class}
                 </span>
                 <span className="text-lg w-[150px]">
-                  {item.checkSubClass.check_sub_class}
+                  {item.checkSubClass.check_class}
                 </span>
                 <span className="text-lg min-w-[80px]">{item.create_dt}</span>
-                <span className="text-lg min-w-[80px]">{item.update_dt}</span>
+
                 <div className="flex items-center space-x-7 text-2xl min-w-[100px]">
                   <MdOutlineModeEdit
                     className="text-dark_blue hover:text-lightest_blue"
@@ -127,29 +122,29 @@ const Item = ({ check_item }: { check_item: ItemProps[] }) => {
 
 export default Item;
 
-interface ItemPageProps {
-  check_item: ItemProps[];
-}
-export const getServerSideProps: GetServerSideProps<
-  ItemPageProps
-> = async () => {
-  try {
-    const response = await fetch(API_REQUEST.check_item);
-    if (!response.ok) {
-      throw new Error("Failed to fetch inspection item data");
-    }
-    const check_item = await response.json();
-    return {
-      props: {
-        check_item,
-      },
-    };
-  } catch (error) {
-    console.error("Failed to fecht inspection item data:", error);
-    return {
-      props: {
-        check_item: [],
-      },
-    };
-  }
-};
+// interface ItemPageProps {
+//   check_item: ItemProps[];
+// }
+// export const getServerSideProps: GetServerSideProps<
+//   ItemPageProps
+// > = async () => {
+//   try {
+//     const response = await fetch(API_REQUEST.check_item);
+//     if (!response.ok) {
+//       throw new Error("Failed to fetch inspection item data");
+//     }
+//     const check_item = await response.json();
+//     return {
+//       props: {
+//         check_item,
+//       },
+//     };
+//   } catch (error) {
+//     console.error("Failed to fecht inspection item data:", error);
+//     return {
+//       props: {
+//         check_item: [],
+//       },
+//     };
+//   }
+// };

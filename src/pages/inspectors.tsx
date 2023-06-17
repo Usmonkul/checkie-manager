@@ -5,13 +5,13 @@ import { BiSearchAlt } from "react-icons/bi";
 import InspectorCard from "@/components/inspectorCard/inspectorCard";
 import { CreateInspector } from "@/components";
 import { API_REQUEST } from "@/services/api.service";
-import { InspectorProps, InspectorsProps } from "../../types/types";
+import { InspectorProps } from "../../types/types";
 import { GetServerSideProps } from "next";
 import { InspectorExData } from "@/data/testData";
 //Component
-const Inspectors = ({ inspector }: { inspector: InspectorProps[] }) => {
+const Inspectors = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [inspectorData, setinspectorData] = useState(inspector);
+  const [inspectorData, setinspectorData] = useState(InspectorExData);
   const [close, setClose] = useState(false);
   //Toggler
   const toggleHandler = () => {
@@ -74,29 +74,29 @@ const Inspectors = ({ inspector }: { inspector: InspectorProps[] }) => {
 
 export default Inspectors;
 
-interface InspectorsPageProps {
-  inspector: InspectorProps[];
-}
-export const getServerSideProps: GetServerSideProps<
-  InspectorsPageProps
-> = async () => {
-  try {
-    const response = await fetch(API_REQUEST.inspector);
-    if (!response.ok) {
-      throw new Error("Failed to fetch inspector data");
-    }
-    const inspector = await response.json();
-    return {
-      props: {
-        inspector,
-      },
-    };
-  } catch (error) {
-    console.error("Failed to fecht inspector data:", error);
-    return {
-      props: {
-        inspector: [],
-      },
-    };
-  }
-};
+// interface InspectorsPageProps {
+//   inspector: InspectorProps[];
+// }
+// export const getServerSideProps: GetServerSideProps<
+//   InspectorsPageProps
+// > = async () => {
+//   try {
+//     const response = await fetch(API_REQUEST.inspector);
+//     if (!response.ok) {
+//       throw new Error("Failed to fetch inspector data");
+//     }
+//     const inspector = await response.json();
+//     return {
+//       props: {
+//         inspector,
+//       },
+//     };
+//   } catch (error) {
+//     console.error("Failed to fecht inspector data:", error);
+//     return {
+//       props: {
+//         inspector: [],
+//       },
+//     };
+//   }
+// };

@@ -2,7 +2,6 @@ import { useState } from "react";
 import Head from "next/head";
 import { PrimaryHeader } from "@/utils/utils";
 import { BiSearchAlt } from "react-icons/bi";
-import { v4 as uuid_v4 } from "uuid";
 import { MdDeleteOutline } from "react-icons/md";
 import { DraftDataProps } from "../../types/types";
 import { DraftExData } from "@/data/testData";
@@ -15,7 +14,7 @@ const Draft = () => {
     item.title.toLowerCase().includes(draftSearch.toLowerCase())
   );
   //Delete function
-  const handleDelete = (dataId: string) => {
+  const handleDelete = (dataId: number) => {
     setDraftData((current: DraftDataProps[]) =>
       current.filter((card: DraftDataProps) => card.id != dataId)
     );
@@ -53,7 +52,7 @@ const Draft = () => {
           </div>
           <div className=" bg-gray-100/40 px-4 py-1 flex items-center justify-between">
             <span className="text-lg font-medium w-[30px]">No</span>
-            <span className="text-lg font-medium w-[200px]">Title</span>
+            <span className="text-lg font-medium w-[250px]">Title</span>
             <span className="text-lg font-medium w-[200px]">Inspector</span>
             <span className="text-lg font-medium w-[150px]">
               Inspection Date
@@ -62,9 +61,6 @@ const Draft = () => {
               Registered Date
             </span>
             <span className="text-lg font-medium w-[100px]">Progress</span>
-            <span className="text-lg font-medium w-[140px]">
-              Complation Date
-            </span>
             <div className="flex items-center space-x-4 justify-center w-[100px]">
               <span className="text-lg font-medium">Delete</span>
             </div>
@@ -96,17 +92,16 @@ export const DraftItem = ({
 }: {
   item: DraftDataProps;
   index: number;
-  handleDelete: (dataId: string) => void;
+  handleDelete: (dataId: number) => void;
 }): JSX.Element => {
   return (
     <div className="bg-primary_white  px-4 py-3  flex items-center justify-between border-l-8 border-transparent  shadow-lg rounded-md">
       <span className="text-lg font-medium w-[30px]">{index + 1}</span>
-      <span className="text-lg w-[200px]">{item.title}</span>
+      <span className="text-lg w-[250px]">{item.title}</span>
       <span className="text-lg w-[200px]">{item.inspector}</span>
       <span className="text-lg w-[150px]">{item.inspectionDate}</span>
       <span className="text-lg w-[150px]">{item.registeredDate}</span>
       <span className="text-lg w-[100px]">{item.progress}</span>
-      <span className="text-lg w-[140px]">{item.complationDate}</span>
       <div className="flex items-center justify-center space-x-7 text-2xl w-[100px]">
         <MdDeleteOutline
           onClick={() => handleDelete(item.id)}

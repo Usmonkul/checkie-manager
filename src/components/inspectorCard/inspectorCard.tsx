@@ -19,7 +19,7 @@ const InspectorCard = ({
     );
   };
   return (
-    <li className="w-[270px] flex flex-col items-center space-y-2 rounded-md p-5 bg-[#333]/30 transition-all hover:scale-105 shadow-md">
+    <li className="w-[300px] flex flex-col items-center space-y-2 rounded-md p-5 bg-[#333]/30 transition-all hover:scale-105 shadow-md">
       <Image
         src={"https://placehold.co/80x80/png"}
         alt="Inspector"
@@ -28,7 +28,7 @@ const InspectorCard = ({
         className="rounded-full"
       />
       <h3 className="font-semibold text-2xl">{data.inspector_name}</h3>
-      <span className="font-medium text-lg">{data.inspector_description}</span>
+      <span className="font-medium text-lg">{data.inspector_title}</span>
       <div className="flex flex-col space-y-1">
         <span className="text-md">
           <span className="font-medium text-base">Email: </span>
@@ -39,7 +39,7 @@ const InspectorCard = ({
           {data.inspector_tel}
         </span>
         <span className="text-md">
-          <span className="font-medium text-base">Info: </span>
+          <span className="font-medium text-base text-center">Info: </span>
           {data.inspector_description}
         </span>
       </div>

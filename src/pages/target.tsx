@@ -10,19 +10,17 @@ import { TargetProps } from "../../types/types";
 import { GetServerSideProps } from "next";
 import { TargetExData } from "@/data/testData";
 //Component
-const Target = ({ target }: { target: TargetProps[] }) => {
+const Target = () => {
   const [close, setClose] = useState(false);
   const [targetSearch, setTargetSearch] = useState("");
-  const [targetData, setTargetData] = useState(target);
+  const [targetData, setTargetData] = useState(TargetExData);
   //Toggler
   const toggleHandler = () => {
     setClose((prev) => !prev);
   };
   //Delete
   const handleDelete = (dataId: number) => {
-    setTargetData((current: TargetProps[]) =>
-      current.filter((card: TargetProps) => card.idx !== dataId)
-    );
+    setTargetData((current) => current.filter((card) => card.idx !== dataId));
   };
   //Search function
   const filteredTarget = targetData.filter((item) =>
@@ -66,15 +64,13 @@ const Target = ({ target }: { target: TargetProps[] }) => {
             </div>
           </div>
           <div className=" bg-gray-100/40 px-4 py-1 flex items-center justify-between">
-            <span className="text-lg font-medium min-w-[30px]">ID</span>
-            <span className="text-lg font-medium min-w-[150px]">Target</span>
-            <span className="text-lg font-medium min-w-[150px]">
+            <span className="text-lg font-medium w-[30px]">ID</span>
+            <span className="text-lg font-medium w-[350px]">Target</span>
+            <span className="text-lg font-medium w-[150px]">
               Registered Date
             </span>
-            <span className="text-lg font-medium min-w-[150px]">
-              Modified Date
-            </span>
-            <div className="flex items-center space-x-4 justify-center min-w-[100px]">
+            <span className="text-lg font-medium w-[150px]">Modified Date</span>
+            <div className="flex items-center space-x-4 justify-center w-[100px]">
               <span className="text-lg font-medium">Edit</span>
               <span className="text-lg font-medium">Delete</span>
             </div>
@@ -88,15 +84,13 @@ const Target = ({ target }: { target: TargetProps[] }) => {
                 key={item.idx}
                 className="bg-primary_white  px-4 py-3  flex items-center justify-between border-l-8 border-transparent  shadow-lg rounded-md hover:scale-100"
               >
-                <span className="text-lg font-medium min-w-[30px]">
+                <span className="text-lg font-medium w-[30px]">
                   {index + 1}
                 </span>
-                <span className="text-lg min-w-[150px]">
-                  {item.check_group}
-                </span>
-                <span className="text-lg min-w-[150px]">{item.create_dt}</span>
-                <span className="text-lg min-w-[150px]">{item.update_dt}</span>
-                <div className="flex items-center space-x-7 text-2xl min-w-[100px]">
+                <span className="text-lg w-[350px]">{item.check_group}</span>
+                <span className="text-lg w-[150px]">{item.create_dt}</span>
+                <span className="text-lg w-[150px]">{item.update_dt}</span>
+                <div className="flex items-center space-x-7 text-2xl w-[100px]">
                   <MdOutlineModeEdit className="text-dark_blue hover:text-lightest_blue" />
                   <MdDeleteOutline
                     onClick={() => handleDelete(item.idx)}
@@ -114,29 +108,29 @@ const Target = ({ target }: { target: TargetProps[] }) => {
 
 export default Target;
 
-interface TargetPageProps {
-  target: TargetProps[];
-}
-export const getServerSideProps: GetServerSideProps<
-  TargetPageProps
-> = async () => {
-  try {
-    const response = await fetch(API_REQUEST.target);
-    if (!response.ok) {
-      throw new Error("Failed to fetch target data");
-    }
-    const target = await response.json();
-    return {
-      props: {
-        target,
-      },
-    };
-  } catch (error) {
-    console.error("Failed to fecht target data:", error);
-    return {
-      props: {
-        target: [],
-      },
-    };
-  }
-};
+// interface TargetPageProps {
+//   target: TargetProps[];
+// }
+// export const getServerSideProps: GetServerSideProps<
+//   TargetPageProps
+// > = async () => {
+//   try {
+//     const response = await fetch(API_REQUEST.target);
+//     if (!response.ok) {
+//       throw new Error("Failed to fetch target data");
+//     }
+//     const target = await response.json();
+//     return {
+//       props: {
+//         target,
+//       },
+//     };
+//   } catch (error) {
+//     console.error("Failed to fecht target data:", error);
+//     return {
+//       props: {
+//         target: [],
+//       },
+//     };
+//   }
+// };

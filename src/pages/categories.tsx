@@ -6,26 +6,15 @@ import { CreateCategory, Filter } from "@/components";
 import { MdDeleteOutline, MdOutlineModeEdit } from "react-icons/md";
 import { useState } from "react";
 import { CategoryExData } from "@/data/testData";
-import {
-  CategoryProps,
-  MCategoryProps,
-  LCategoryProps,
-} from "../../types/types";
+import { CategoryProps } from "../../types/types";
 import { GetServerSideProps } from "next";
 import { API_REQUEST } from "@/services/api.service";
 
 //Page
-const Categories = ({
-  categoryL,
-  categoryM,
-}: {
-  categoryL: LCategoryProps[];
-  categoryM: MCategoryProps[];
-}) => {
+const Categories = () => {
   const [close, setClose] = useState(false);
   const [categoryData, setCategoryData] = useState(CategoryExData);
   const [selectedOption, setSelectedOption] = useState("");
-  const [datab, setDatab] = useState([...categoryL, ...categoryM]);
   const [categoryQuery, setCategoryQuery] = useState("");
   // Filter function
   const handleOptionChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -36,39 +25,26 @@ const Categories = ({
     setClose((prev) => !prev);
   };
   //Delete function
-  const handleDelete = (dataId: string) => {
+  const handleDelete = (dataId: number) => {
     setCategoryData((current: CategoryProps[]) =>
-      current.filter((card: CategoryProps) => card.id != dataId)
+      current.filter((card: CategoryProps) => card.idx != dataId)
     );
   };
 
   //Search function
-  const filteredCategory = datab.filter((item) => {
+  const filteredCategory = categoryData.filter((item) => {
     if (categoryQuery.length) {
-      return (
-        item.check_class?.toLowerCase().includes(categoryQuery.toLowerCase()) ||
-        item?.check_sub_class
-          ?.toLowerCase()
-          .includes(categoryQuery.toLowerCase())
-      );
+      return item.check_class
+        ?.toLowerCase()
+        .includes(categoryQuery.toLowerCase());
     } else if (selectedOption === "large") {
-      return item?.check_class?.length ?? 0 > 0;
+      return item.del_yn === "large";
     } else if (selectedOption === "middle") {
-      return item?.check_sub_class?.length ?? 0 > 0;
+      return item.del_yn === "middle";
     } else {
       return true;
     }
   });
-
-  let data;
-
-  if (selectedOption === "large") {
-    data = categoryData.filter((item) => item.category === "large");
-  } else if (selectedOption === "middle") {
-    data = categoryData.filter((item) => item.category === "middle");
-  } else {
-    data = categoryData;
-  }
 
   return (
     <div className="text-black">
@@ -78,9 +54,9 @@ const Categories = ({
       <div className="flex flex-col py-5 px-5 space-y-4">
         <CreateCategory
           categoryData={categoryData}
-          setCategoryData={setCategoryData}
           close={close}
           toggleHandler={toggleHandler}
+          setCategoryData={setCategoryData}
         />
         <div className="flex items-center justify-between ">
           <PrimaryHeader title="Inspection Categories" />
@@ -144,37 +120,13 @@ const Categories = ({
                   {item.check_class || item.check_sub_class}
                 </span>
                 <span className="text-lg w-[200px]">
-                  {item.check_class?.length ? "Large" : "Middle"}
+                  {item.del_yn === "large" ? "Large" : "Middle"}
                 </span>
                 <span className="text-lg w-[150px]">{item.create_dt}</span>
                 <div className="flex items-center space-x-7 text-2xl w-[100px]">
                   <MdOutlineModeEdit className="text-dark_blue hover:text-lightest_blue" />
                   <MdDeleteOutline
-                    // onClick={() => handleDelete(index)}
-                    className="text-dark_blue hover:text-red-500"
-                  />
-                </div>
-              </div>
-            );
-          })}
-          {data.map((item, index) => {
-            return (
-              <div
-                key={item.id}
-                className="bg-primary_white  px-4 py-3  flex items-center justify-between border-l-8 border-transparent  shadow-lg rounded-md"
-              >
-                <span className="text-lg font-medium w-[30px]">
-                  {index + 1}
-                </span>
-                <span className="text-lg w-[250px]">{item.name}</span>
-                <span className="text-lg w-[200px]">
-                  {item.category === "large" ? "Large" : "Middle"}
-                </span>
-                <span className="text-lg w-[150px]">{item.registeredDate}</span>
-                <div className="flex items-center space-x-7 text-2xl w-[100px]">
-                  <MdOutlineModeEdit className="text-dark_blue hover:text-lightest_blue" />
-                  <MdDeleteOutline
-                    onClick={() => handleDelete(item.id)}
+                    onClick={() => handleDelete(index)}
                     className="text-dark_blue hover:text-red-500"
                   />
                 </div>
@@ -189,36 +141,36 @@ const Categories = ({
 
 export default Categories;
 
-interface CategoryPageProps {
-  categoryL: LCategoryProps[];
-  categoryM: MCategoryProps[];
-}
-export const getServerSideProps: GetServerSideProps<
-  CategoryPageProps
-> = async () => {
-  try {
-    const lResponse = await fetch(API_REQUEST.categoryL);
-    const mResponse = await fetch(API_REQUEST.categoryM);
-    if (!lResponse.ok) {
-      throw new Error("Failed to fetch inspection item data");
-    } else if (!mResponse.ok) {
-      throw new Error("Failed to fetch inspection item data");
-    }
-    const categoryL = await lResponse.json();
-    const categoryM = await mResponse.json();
-    return {
-      props: {
-        categoryL,
-        categoryM,
-      },
-    };
-  } catch (error) {
-    console.error("Failed to fecht inspection item data:", error);
-    return {
-      props: {
-        categoryL: [],
-        categoryM: [],
-      },
-    };
-  }
-};
+// interface CategoryPageProps {
+//   categoryL: LCategoryProps[];
+//   categoryM: MCategoryProps[];
+// }
+// export const getServerSideProps: GetServerSideProps<
+//   CategoryPageProps
+// > = async () => {
+//   try {
+//     const lResponse = await fetch(API_REQUEST.categoryL);
+//     const mResponse = await fetch(API_REQUEST.categoryM);
+//     if (!lResponse.ok) {
+//       throw new Error("Failed to fetch inspection item data");
+//     } else if (!mResponse.ok) {
+//       throw new Error("Failed to fetch inspection item data");
+//     }
+//     const categoryL = await lResponse.json();
+//     const categoryM = await mResponse.json();
+//     return {
+//       props: {
+//         categoryL,
+//         categoryM,
+//       },
+//     };
+//   } catch (error) {
+//     console.error("Failed to fecht inspection item data:", error);
+//     return {
+//       props: {
+//         categoryL: [],
+//         categoryM: [],
+//       },
+//     };
+//   }
+// };

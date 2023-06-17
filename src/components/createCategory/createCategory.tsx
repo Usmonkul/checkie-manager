@@ -46,10 +46,12 @@ const CreateCategory = ({
             const newCategory = [
               ...categoryData,
               {
-                id: uuid_v4(),
-                name: values.categoryName,
-                category: values.categoryType,
-                registeredDate: "2012.02.21",
+                idx: parseInt(uuid_v4()),
+                check_class: values.categoryName,
+                del_yn: values.categoryType,
+                create_by: "admin",
+                create_dt: "2021.03.04",
+                update_dt: "2022.02.02",
               },
             ];
             setCategoryData(newCategory);

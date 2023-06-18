@@ -33,7 +33,7 @@ const Header = () => {
           </li>
           <li>
             <button
-              className="hover:text-primary_white/50 transition-all duration-150 cursor-pointer"
+              className="hover:text-primary_white/50 transition-all duration-150 cursor-pointer uppercase"
               onClick={setIsUserExistFalse}
             >
               Sign Out

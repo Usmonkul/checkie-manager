@@ -25,10 +25,10 @@ export interface TargetProps {
   file_name: string;
   file_path: string;
   file_size: string;
-  check_item_idx: [];
+  check_item_idx: any;
   tag_id: string;
   check_group_schedule: string;
-  check_group_inspectors: [];
+  check_group_inspectors: any;
 }
 
 export interface ItemProps {

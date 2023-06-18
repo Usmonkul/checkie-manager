@@ -32,7 +32,12 @@ const Item = () => {
       <Head>
         <title>Inspection Item</title>
       </Head>
-      <RegisterItem close={close} toggleHandler={toggleHandler} />
+      <RegisterItem
+        close={close}
+        toggleHandler={toggleHandler}
+        setItemData={setItemData}
+        itemData={itemData}
+      />
       <div className="flex flex-col py-5 px-5 space-y-4">
         <div className="flex items-center justify-between ">
           <PrimaryHeader title="Inspection Item" />
@@ -85,7 +90,7 @@ const Item = () => {
           {filteredItems.map((item, index) => {
             return (
               <div
-                key={item.idx}
+                key={index + 1}
                 className="bg-primary_white  px-4 py-3  flex items-center justify-between border-l-8 border-transparent  shadow-lg rounded-md hover:scale-100 cursor-pointer"
               >
                 <span className="text-lg font-medium min-w-[30px]">

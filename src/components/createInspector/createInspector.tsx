@@ -5,12 +5,17 @@ import * as Yup from "yup";
 import { AiOutlineClose } from "react-icons/ai";
 import { v4 as uuid_v4 } from "uuid";
 import { FormInputLarge } from "../formFiels/formFields";
+import { InspectorProps } from "../../../types/types";
 // import { dataBase } from "@/pages/inspectors";
 
 const CreateInspector = ({
   close,
   toggleHandler,
+  inspectorData,
+  setinspectorData,
 }: {
+  inspectorData: InspectorProps[];
+  setinspectorData: (newInspectors: InspectorProps[]) => void;
   close: boolean;
   toggleHandler: () => void;
 }) => {
@@ -34,51 +39,56 @@ const CreateInspector = ({
             inspector_tel: "",
             inspector_email: "",
             inspector_description: "",
-            inspector_image: "",
           }}
           validationSchema={Yup.object({
             inspector_name: Yup.string()
               .max(15, "Must be 15 characters or less")
               .required("Required"),
             inspector_tel: Yup.string()
-              .max(15, "Must be 20 characters or less")
+              .max(15, "Must be 15 characters or less")
               .required("Required"),
             inspector_email: Yup.string()
               .email("Invalid email address")
               .required("Required"),
             inspector_description: Yup.string().max(
               30,
-              "Must be 20 characters or less"
+              "Must be 30 characters or less"
             ),
           })}
           onSubmit={async (values, { setSubmitting, resetForm }) => {
-            const data = {
-              idx: parseInt(uuid_v4()),
-              inspector_name: values.inspector_name,
-              inspector_tel: values.inspector_tel,
-              inspector_email: values.inspector_email,
-              inspector_description: values.inspector_description,
-              inspector_image: "https://placehold.co/600x400",
-              del_yn: "N",
-              create_by: "admin",
-              create_dt: "2022-05-02",
-              update_by: "admin",
-              validation: true,
-              update_dt: "2022-05-02",
-            };
-            const JSONdata = JSON.stringify(data);
-            console.log(JSONdata);
-            const endpoint =
-              "http://idrenvision.iptime.org:8089/inspector/insert";
-            const options = {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
+            const randomNum = Math.floor(Math.random() * 1000);
+            const newInspectors = [
+              {
+                idx: randomNum,
+                inspector_name: values.inspector_name,
+                inspector_tel: values.inspector_tel,
+                inspector_email: values.inspector_email,
+                inspector_title: "Inspector in Science Lab",
+                inspector_description: values.inspector_description,
+                inspector_image: "https://placehold.co/600x400",
+                del_yn: "N",
+                create_by: "admin",
+                create_dt: "2022-05-02",
+                update_by: "admin",
+                validation: true,
+                update_dt: "2022-05-02",
               },
-              body: JSONdata,
-            };
-            const response = await fetch(endpoint, options);
-            const result = await response.json();
+              ...inspectorData,
+            ];
+            setinspectorData(newInspectors);
+            // const JSONdata = JSON.stringify(data);
+            // console.log(JSONdata);
+            // const endpoint =
+            //   "http://idrenvision.iptime.org:8089/inspector/insert";
+            // const options = {
+            //   method: "POST",
+            //   headers: {
+            //     "Content-Type": "application/json",
+            //   },
+            //   body: JSONdata,
+            // };
+            // const response = await fetch(endpoint, options);
+            // const result = await response.json();
             setSubmitting(false);
             resetForm();
           }}

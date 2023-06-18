@@ -44,7 +44,6 @@ const CreateCategory = ({
           })}
           onSubmit={(values, { setSubmitting, resetForm }) => {
             const newCategory = [
-              ...categoryData,
               {
                 idx: parseInt(uuid_v4()),
                 check_class: values.categoryName,
@@ -53,15 +52,11 @@ const CreateCategory = ({
                 create_dt: "2021.03.04",
                 update_dt: "2022.02.02",
               },
+              ...categoryData,
             ];
             setCategoryData(newCategory);
             setSubmitting(false);
-            resetForm({
-              values: {
-                categoryName: "",
-                categoryType: "",
-              },
-            });
+            resetForm();
           }}
         >
           <Form className="flex flex-col space-y-3">

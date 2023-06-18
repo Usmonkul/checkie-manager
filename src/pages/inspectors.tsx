@@ -55,7 +55,12 @@ const Inspectors = () => {
             </div>
           </div>
         </div>
-        <CreateInspector close={close} toggleHandler={toggleHandler} />
+        <CreateInspector
+          close={close}
+          toggleHandler={toggleHandler}
+          inspectorData={inspectorData}
+          setinspectorData={setinspectorData}
+        />
         <ul className="list-none flex flex-wrap gap-3 justify-start">
           {filteredInspectors.map((item: InspectorProps) => {
             return (

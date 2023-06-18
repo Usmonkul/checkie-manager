@@ -5,9 +5,9 @@ import { MdDeleteOutline, MdOutlineModeEdit } from "react-icons/md";
 import { useState } from "react";
 import { RegisterTarget, Filter } from "@/components";
 // import { TargetDataProps } from "../../types/types";
-import { API_REQUEST } from "@/services/api.service";
-import { TargetProps } from "../../types/types";
-import { GetServerSideProps } from "next";
+// import { API_REQUEST } from "@/services/api.service";
+// import { TargetProps } from "../../types/types";
+// import { GetServerSideProps } from "next";
 import { TargetExData } from "@/data/testData";
 //Component
 const Target = () => {
@@ -31,7 +31,12 @@ const Target = () => {
       <Head>
         <title>Inspection target</title>
       </Head>
-      <RegisterTarget close={close} toggleHandler={toggleHandler} />
+      <RegisterTarget
+        targetData={targetData}
+        setTargetData={setTargetData}
+        close={close}
+        toggleHandler={toggleHandler}
+      />
       <div className="flex flex-col py-5 px-5 space-y-4">
         <div className="flex items-center justify-between ">
           <PrimaryHeader title="Inspection Target" />

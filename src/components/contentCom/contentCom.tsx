@@ -5,8 +5,10 @@ import { MdDeleteOutline } from "react-icons/md";
 import { HiOutlineDuplicate } from "react-icons/hi";
 const ContentCom = ({
   inputType,
+  name,
 }: {
   inputType: "textarea" | "radio" | "checkbox";
+  name: string;
 }) => {
   const [typeSelect, setTypeSelect] = useState("");
   const handleTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -18,7 +20,7 @@ const ContentCom = ({
         <Field
           placeholder="Enter a text content..."
           as="textarea"
-          name="textContent"
+          name="content"
           className="w-full border-b-2 p-2"
         />
       </div>

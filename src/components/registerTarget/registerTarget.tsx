@@ -3,11 +3,16 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { AiOutlineClose } from "react-icons/ai";
 import { FormInputLarge, Select } from "../formFiels/formFields";
+import { TargetProps } from "../../../types/types";
 
 const RegisterTarget = ({
   close,
   toggleHandler,
+  targetData,
+  setTargetData,
 }: {
+  targetData: TargetProps[];
+  setTargetData: (newTarget: TargetProps[]) => void;
   close: boolean;
   toggleHandler: () => void;
 }) => {
@@ -38,10 +43,10 @@ const RegisterTarget = ({
           <Formik
             initialValues={{
               check_group: "",
-              tag_id: null,
-              items: [],
+              tag_id: "",
+              items: ["one"],
               schedule: "",
-              inspectors: [],
+              inspectors: ["one"],
               image: "",
             }}
             validationSchema={Yup.object({
@@ -53,11 +58,27 @@ const RegisterTarget = ({
                 .required("Required"),
             })}
             onSubmit={(values, { setSubmitting, resetForm }) => {
-              setTimeout(() => {
-                alert(JSON.stringify(values, null, 2));
-                setSubmitting(false);
-                resetForm();
-              }, 400);
+              const randomIdx = Math.floor(Math.random() * 1000);
+              const newTarget = [
+                {
+                  idx: randomIdx,
+                  check_group: values.check_group,
+                  create_by: "admin",
+                  create_dt: "2021.03.04",
+                  update_dt: "2022.02.02",
+                  file_name: "",
+                  file_path: values.image,
+                  file_size: "",
+                  check_item_idx: values.items,
+                  check_group_schedule: values.schedule,
+                  check_group_inspectors: values.inspectors,
+                  tag_id: values.tag_id,
+                },
+                ...targetData,
+              ];
+              setTargetData(newTarget);
+              setSubmitting(false);
+              resetForm();
             }}
           >
             <Form className="flex flex-col space-y-3">
